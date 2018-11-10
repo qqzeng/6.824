@@ -1,0 +1,5 @@
+master: Starting Map/Reduce task iiseq
+Merge: read mrtmp.iiseq-res-0
+Merge: read mrtmp.iiseq-res-1
+Merge: read mrtmp.iiseq-res-2
+master: Map/Reduce task completed

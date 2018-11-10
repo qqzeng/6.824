@@ -1,0 +1,1513 @@
+[Make]                                       Raft node 0 created server(Follower, 0, 0).
+[Make]                                       Raft node 1 created server(Follower, 1, 0).
+[Make]                                       Raft node 2 created server(Follower, 2, 0).
+[Make]                                       Raft node 3 created server(Follower, 3, 0).
+[Make]                                       Raft node 4 created server(Follower, 4, 0).
+Test: partitions, one client (3A) ...
+[Clerk-MakeClerk]                            Client(H2LYd-Fc4i) create...
+[Clerk-MakeClerk]                            Client(Nxzn90bBYb) create...
+[Clerk-PutAppend]                            Client(Nxzn90bBYb) issues a command(538442403722019573): {0  Put 538442403722019573 1}.
+[Server-PutAppend]                           Client choose Server(2), wrong!
+[Clerk-PutAppend]                            Server(0) reply error for command(538442403722019573): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(538442403722019573): {0  Put 538442403722019573 1} by redirecting  to Server(1).
+[Server-PutAppend]                           Client choose Server(0), wrong!
+[Clerk-PutAppend]                            Server(1) reply error for command(538442403722019573): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(538442403722019573): {0  Put 538442403722019573 1} by redirecting  to Server(2).
+[Server-PutAppend]                           Client choose Server(3), wrong!
+[Clerk-PutAppend]                            Server(2) reply error for command(538442403722019573): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(538442403722019573): {0  Put 538442403722019573 1} by redirecting  to Server(3).
+[Server-PutAppend]                           Client choose Server(4), wrong!
+[Clerk-PutAppend]                            Server(3) reply error for command(538442403722019573): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(538442403722019573): {0  Put 538442403722019573 1} by redirecting  to Server(4).
+[Server-PutAppend]                           Client choose Server(1), wrong!
+[Clerk-PutAppend]                            Server(4) reply error for command(538442403722019573): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(538442403722019573): {0  Put 538442403722019573 1} by redirecting  to Server(0).
+[Make]                                       Server(Follower, 1, 0) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 1, 0) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 1, 1) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 0) will update its states by RequestVote RPC from server(1, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 1) updates its states by RequestVote RPC from server(1, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 0) will update its states by RequestVote RPC from server(1, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 0) will update its states by RequestVote RPC from server(1, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 1) updates its states by RequestVote RPC from server(1, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 1) updates its states by RequestVote RPC from server(1, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 0) will update its states by RequestVote RPC from server(1, 1).
+[Leader Election-sendRequestVote]            Server(Candidate, 1, 1) receives vote from server(2, 1), current votes is 2.
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 1) updates its states by RequestVote RPC from server(1, 1).
+[Leader Election-sendRequestVote]            Server(Candidate, 1, 1) receives vote from server(3, 1), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 1, 1) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 1, 1) begins reinitialize nextIndex and matchIndex.
+[Server-PutAppend]                           Client choose Server(2), wrong!
+[Clerk-PutAppend]                            Server(0) reply error for command(538442403722019573): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(538442403722019573): {0  Put 538442403722019573 1} by redirecting  to Server(1).
+[Server-PutAppend]                           Client choose Server(0), wrong!
+[Clerk-PutAppend]                            Server(1) reply error for command(538442403722019573): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(538442403722019573): {0  Put 538442403722019573 1} by redirecting  to Server(2).
+[Server-PutAppend]                           Client choose Server(3), wrong!
+[Clerk-PutAppend]                            Server(2) reply error for command(538442403722019573): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(538442403722019573): {0  Put 538442403722019573 1} by redirecting  to Server(3).
+[Server-PutAppend]                           Client choose Server(4), wrong!
+[Clerk-PutAppend]                            Server(3) reply error for command(538442403722019573): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(538442403722019573): {0  Put 538442403722019573 1} by redirecting  to Server(4).
+[#2B Start]                                  Server(Leader, 1, 1) appends log(1, {Put [0 ] 538442403722019573 1}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(2, 1) advances from 0 => 1.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(3, 1) advances from 0 => 1.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(4, 1) advances from 0 => 1.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(0, 1) advances from 0 => 1.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 0 => 1.
+[#2B Make]                                   Server(Leader, 1, 1) applied logs[1, 1].
+-------------- Reply(1) -------------------
+[Server-PutAppend]                           Server(1): Reply SUCCESS from raft for command(538442403722019573).
+[Server-PutAppend]                           Server(1): Return result for command(538442403722019573). result: key=0, value=.
+===========command(538442403722019573)==================
+map["0":""]
+=============================
+[Clerk-Get]                                  Client(Nxzn90bBYb) issues a command(2144120222121149141): {0 2144120222121149141 2}.
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[1, 1].
+[#2B Start]                                  Server(Leader, 1, 1) appends log(2, {Get [0] 2144120222121149141 2}).
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[1, 1].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(0, 1) advances from 1 => 2.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(4, 1) advances from 1 => 2.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 1 => 2.
+[#2B Make]                                   Server(Leader, 1, 1) applied logs[2, 2].
+-------------- Reply(2) -------------------
+[Server-Get]                                 Server(1): Reply  SUCCESS from raft for command(2144120222121149141).
+[Server-Get]                                 Server(1): Return result for command(2144120222121149141). result: key=0, value=.
+===========command(2144120222121149141)==================
+map["0":""]
+=============================
+[Clerk-Get]                                  Command(2144120222121149141) call by client(Nxzn90bBYb) result:  
+[Clerk-PutAppend]                            Client(Nxzn90bBYb) issues a command(4579081334873155781): {0 x 0 0 y Append 4579081334873155781 3}.
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[2, 2].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[2, 2].
+[#2B Start]                                  Server(Leader, 1, 1) appends log(3, {Append [0 x 0 0 y] 4579081334873155781 3}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(0, 1) advances from 2 => 3.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(4, 1) advances from 2 => 3.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 2 => 3.
+[#2B Make]                                   Server(Leader, 1, 1) applied logs[3, 3].
+-------------- Reply(3) -------------------
+[Server-PutAppend]                           Server(1): Reply SUCCESS from raft for command(4579081334873155781).
+[Server-PutAppend]                           Server(1): Return result for command(4579081334873155781). result: key=0, value=x 0 0 y.
+===========command(4579081334873155781)==================
+map["0":"x 0 0 y"]
+=============================
+[Clerk-Get]                                  Client(Nxzn90bBYb) issues a command(1731020270416603230): {0 1731020270416603230 4}.
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[3, 3].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[3, 3].
+[#2B Start]                                  Server(Leader, 1, 1) appends log(4, {Get [0] 1731020270416603230 4}).
+[Make]                                       Server(Follower, 2, 1) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 2, 1) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 2) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 1) will update its states by RequestVote RPC from server(2, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 2) updates its states by RequestVote RPC from server(2, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 2) is asked to vote from server(2, 2).
+[Leader Election-sendRequestVote]            Server(Candidate, 2, 2) receives vote from server(3, 2), current votes is 2.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(0, 1) advances from 3 => 4.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(4, 1) advances from 3 => 4.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 3 => 4.
+[#2B Make]                                   Server(Leader, 1, 1) applied logs[4, 4].
+-------------- Reply(4) -------------------
+[Server-Get]                                 Server(1): Reply  SUCCESS from raft for command(1731020270416603230).
+[Server-Get]                                 Server(1): Return result for command(1731020270416603230). result: key=0, value=x 0 0 y.
+===========command(1731020270416603230)==================
+map["0":"x 0 0 y"]
+=============================
+[Clerk-Get]                                  Command(1731020270416603230) call by client(Nxzn90bBYb) result: x 0 0 y 
+[Clerk-PutAppend]                            Client(Nxzn90bBYb) issues a command(147016011491460584): {0 x 0 1 y Append 147016011491460584 5}.
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[4, 4].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[4, 4].
+[#2B Start]                                  Server(Leader, 1, 1) appends log(5, {Append [0 x 0 1 y] 147016011491460584 5}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(0, 1) advances from 4 => 5.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(4, 1) advances from 4 => 5.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 4 => 5.
+[#2B Make]                                   Server(Leader, 1, 1) applied logs[5, 5].
+-------------- Reply(5) -------------------
+[Server-PutAppend]                           Server(1): Reply SUCCESS from raft for command(147016011491460584).
+[Server-PutAppend]                           Server(1): Return result for command(147016011491460584). result: key=0, value=x 0 0 yx 0 1 y.
+===========command(147016011491460584)==================
+map["0":"x 0 0 yx 0 1 y"]
+=============================
+[Clerk-Get]                                  Client(Nxzn90bBYb) issues a command(1225921968563222933): {0 1225921968563222933 6}.
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[5, 5].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[5, 5].
+[#2B Start]                                  Server(Leader, 1, 1) appends log(6, {Get [0] 1225921968563222933 6}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(0, 1) advances from 5 => 6.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(4, 1) advances from 5 => 6.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 5 => 6.
+[#2B Make]                                   Server(Leader, 1, 1) applied logs[6, 6].
+-------------- Reply(6) -------------------
+[Server-Get]                                 Server(1): Reply  SUCCESS from raft for command(1225921968563222933).
+[Server-Get]                                 Server(1): Return result for command(1225921968563222933). result: key=0, value=x 0 0 yx 0 1 y.
+===========command(1225921968563222933)==================
+map["0":"x 0 0 yx 0 1 y"]
+=============================
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[6, 6].
+[Clerk-Get]                                  Command(1225921968563222933) call by client(Nxzn90bBYb) result: x 0 0 yx 0 1 y 
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[6, 6].
+[Clerk-Get]                                  Client(Nxzn90bBYb) issues a command(3243021946654731026): {0 3243021946654731026 7}.
+[#2B Start]                                  Server(Leader, 1, 1) appends log(7, {Get [0] 3243021946654731026 7}).
+[Make]                                       Server(Follower, 3, 2) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 3, 2) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 3, 3) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 2, 2) will update its states by RequestVote RPC from server(3, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 3) updates its states by RequestVote RPC from server(3, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 3) is asked to vote from server(3, 3).
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 3) receives vote from server(2, 3), current votes is 2.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(0, 1) advances from 6 => 7.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 1)'s matchIndex for Server(4, 1) advances from 6 => 7.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 6 => 7.
+[#2B Make]                                   Server(Leader, 1, 1) applied logs[7, 7].
+-------------- Reply(7) -------------------
+[Server-Get]                                 Server(1): Reply  SUCCESS from raft for command(3243021946654731026).
+[Server-Get]                                 Server(1): Return result for command(3243021946654731026). result: key=0, value=x 0 0 yx 0 1 y.
+===========command(3243021946654731026)==================
+map["0":"x 0 0 yx 0 1 y"]
+=============================
+[Clerk-Get]                                  Command(3243021946654731026) call by client(Nxzn90bBYb) result: x 0 0 yx 0 1 y 
+[Clerk-PutAppend]                            Client(Nxzn90bBYb) issues a command(2504807908119279013): {0 x 0 2 y Append 2504807908119279013 8}.
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[7, 7].
+[Append Entries-sendAppendEntries]           Server(Follower, 1, 3) converts to follower by AppendEntries RPC reply from server(3, 3).
+[Server-PutAppend]                           Client choose Server(1), wrong!
+[Clerk-PutAppend]                            Server(4) reply error for command(2504807908119279013): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(2504807908119279013): {0 x 0 2 y Append 2504807908119279013 8} by redirecting  to Server(0).
+[Server-PutAppend]                           Client choose Server(2), wrong!
+[Clerk-PutAppend]                            Server(0) reply error for command(2504807908119279013): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(2504807908119279013): {0 x 0 2 y Append 2504807908119279013 8} by redirecting  to Server(1).
+[Server-PutAppend]                           Client choose Server(0), wrong!
+[Clerk-PutAppend]                            Server(1) reply error for command(2504807908119279013): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(2504807908119279013): {0 x 0 2 y Append 2504807908119279013 8} by redirecting  to Server(2).
+[Server-PutAppend]                           Client choose Server(3), wrong!
+[Clerk-PutAppend]                            Server(2) reply error for command(2504807908119279013): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(2504807908119279013): {0 x 0 2 y Append 2504807908119279013 8} by redirecting  to Server(3).
+[Make]                                       Server(Follower, 0, 1) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 0, 1) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 2) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 3) rejects a (outdated) RequestVote RPC from server(0, 2).
+[Make]                                       Server(Candidate, 3, 3) waits timeout.
+[Make]                                       Server(Candidate, 3, 3) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 3, 4) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 1) will update its states by RequestVote RPC from server(3, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 3) will update its states by RequestVote RPC from server(3, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 4) updates its states by RequestVote RPC from server(3, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 4) updates its states by RequestVote RPC from server(3, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 4)'s logs  is newer than server(3)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 4)'s logs  is newer than server(3)'s.
+[Make]                                       Server(Follower, 2, 3) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 2, 3) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 4) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 3) will update its states by RequestVote RPC from server(2, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 4) updates its states by RequestVote RPC from server(2, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 4)'s logs  is newer than server(2)'s.
+[Server-PutAppend]                           Client choose Server(4), wrong!
+[Clerk-PutAppend]                            Server(3) reply error for command(2504807908119279013): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(2504807908119279013): {0 x 0 2 y Append 2504807908119279013 8} by redirecting  to Server(4).
+[Server-PutAppend]                           Client choose Server(1), wrong!
+[Clerk-PutAppend]                            Server(4) reply error for command(2504807908119279013): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(2504807908119279013): {0 x 0 2 y Append 2504807908119279013 8} by redirecting  to Server(0).
+[Make]                                       Server(Follower, 4, 4) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 4, 4) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 5) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 3, 4) will update its states by RequestVote RPC from server(4, 5).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 4) will update its states by RequestVote RPC from server(4, 5).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 5) updates its states by RequestVote RPC from server(4, 5).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 5) updates its states by RequestVote RPC from server(4, 5).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 5) is asked to vote from server(4, 5).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 5) is asked to vote from server(4, 5).
+[Leader Election-sendRequestVote]            Server(Candidate, 4, 5) receives vote from server(3, 5), current votes is 2.
+[Leader Election-sendRequestVote]            Server(Candidate, 4, 5) receives vote from server(1, 5), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 4, 5) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 4, 5) begins reinitialize nextIndex and matchIndex.
+[Server-PutAppend]                           Client choose Server(2), wrong!
+[Clerk-PutAppend]                            Server(0) reply error for command(2504807908119279013): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(2504807908119279013): {0 x 0 2 y Append 2504807908119279013 8} by redirecting  to Server(1).
+[#2B Make]                                   Server(Follower, 3, 5) applied logs[1, 7].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(3, 5) advances from 0 => 7.
+[Server-PutAppend]                           Client choose Server(0), wrong!
+[Clerk-PutAppend]                            Server(1) reply error for command(2504807908119279013): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(2504807908119279013): {0 x 0 2 y Append 2504807908119279013 8} by redirecting  to Server(2).
+[Make]                                       Server(Candidate, 2, 4) waits timeout.
+[Make]                                       Server(Candidate, 2, 4) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 5) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 4) will update its states by RequestVote RPC from server(2, 5).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 5) updates its states by RequestVote RPC from server(2, 5).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 5)'s logs  is newer than server(2)'s.
+[Server-PutAppend]                           Client choose Server(3), wrong!
+[Clerk-PutAppend]                            Server(2) reply error for command(2504807908119279013): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(2504807908119279013): {0 x 0 2 y Append 2504807908119279013 8} by redirecting  to Server(3).
+[#2B Start]                                  Server(Leader, 4, 5) appends log(8, {Append [0 x 0 2 y] 2504807908119279013 8}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(3, 5) advances from 7 => 8.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(1, 5) advances from 7 => 8.
+[Make]                                       Server(Follower, 0, 5) waits timeout.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 7 => 8.
+[#2B Make]                                   Server(Leader, 4, 5) applied logs[8, 8].
+-------------- Reply(8) -------------------
+[Server-PutAppend]                           Server(4): Reply SUCCESS from raft for command(2504807908119279013).
+[Server-PutAppend]                           Server(4): Return result for command(2504807908119279013). result: key=0, value=x 0 0 yx 0 1 yx 0 2 y.
+===========command(2504807908119279013)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 y"]
+=============================
+[Clerk-PutAppend]                            Client(Nxzn90bBYb) issues a command(2206074353348162537): {0 x 0 3 y Append 2206074353348162537 9}.
+[#2B Make]                                   Server(Follower, 3, 5) applied logs[8, 8].
+[#2B Make]                                   Server(Follower, 0, 5) applied logs[7, 8].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(0, 5) advances from 0 => 8.
+[#2B Make]                                   Server(Follower, 1, 5) applied logs[8, 8].
+[#2B Start]                                  Server(Leader, 4, 5) appends log(9, {Append [0 x 0 3 y] 2206074353348162537 9}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(3, 5) advances from 8 => 9.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(0, 5) advances from 8 => 9.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(1, 5) advances from 8 => 9.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 8 => 9.
+[#2B Make]                                   Server(Leader, 4, 5) applied logs[9, 9].
+-------------- Reply(9) -------------------
+[Server-PutAppend]                           Server(4): Reply SUCCESS from raft for command(2206074353348162537).
+[Server-PutAppend]                           Server(4): Return result for command(2206074353348162537). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 y.
+===========command(2206074353348162537)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 y"]
+=============================
+[Clerk-Get]                                  Client(Nxzn90bBYb) issues a command(231409646613660916): {0 231409646613660916 10}.
+[#2B Make]                                   Server(Follower, 3, 5) applied logs[9, 9].
+[#2B Make]                                   Server(Follower, 0, 5) applied logs[9, 9].
+[#2B Start]                                  Server(Leader, 4, 5) appends log(10, {Get [0] 231409646613660916 10}).
+[#2B Make]                                   Server(Follower, 1, 5) applied logs[9, 9].
+[Make]                                       Server(Candidate, 2, 5) waits timeout.
+[Make]                                       Server(Candidate, 2, 5) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 6) begins broadcast RequestVote RPCs to all peers.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(1, 5) advances from 9 => 10.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(0, 5) advances from 9 => 10.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(3, 5) advances from 9 => 10.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 9 => 10.
+[#2B Make]                                   Server(Leader, 4, 5) applied logs[10, 10].
+-------------- Reply(10) -------------------
+[Server-Get]                                 Server(4): Reply  SUCCESS from raft for command(231409646613660916).
+[Server-Get]                                 Server(4): Return result for command(231409646613660916). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 y.
+===========command(231409646613660916)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 y"]
+=============================
+[Clerk-Get]                                  Command(231409646613660916) call by client(Nxzn90bBYb) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 y 
+[Clerk-Get]                                  Client(Nxzn90bBYb) issues a command(1610782547358792223): {0 1610782547358792223 11}.
+[#2B Make]                                   Server(Follower, 1, 5) applied logs[10, 10].
+[#2B Make]                                   Server(Follower, 3, 5) applied logs[10, 10].
+[#2B Make]                                   Server(Follower, 0, 5) applied logs[10, 10].
+[#2B Start]                                  Server(Leader, 4, 5) appends log(11, {Get [0] 1610782547358792223 11}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(0, 5) advances from 10 => 11.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(3, 5) advances from 10 => 11.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(1, 5) advances from 10 => 11.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 10 => 11.
+[#2B Make]                                   Server(Leader, 4, 5) applied logs[11, 11].
+-------------- Reply(11) -------------------
+[Server-Get]                                 Server(4): Reply  SUCCESS from raft for command(1610782547358792223).
+[Server-Get]                                 Server(4): Return result for command(1610782547358792223). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 y.
+===========command(1610782547358792223)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 y"]
+=============================
+[Clerk-Get]                                  Command(1610782547358792223) call by client(Nxzn90bBYb) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 y 
+[Clerk-PutAppend]                            Client(Nxzn90bBYb) issues a command(427503304860601474): {0 x 0 4 y Append 427503304860601474 12}.
+[#2B Make]                                   Server(Follower, 0, 5) applied logs[11, 11].
+[#2B Make]                                   Server(Follower, 3, 5) applied logs[11, 11].
+[#2B Make]                                   Server(Follower, 1, 5) applied logs[11, 11].
+[#2B Start]                                  Server(Leader, 4, 5) appends log(12, {Append [0 x 0 4 y] 427503304860601474 12}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(0, 5) advances from 11 => 12.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(1, 5) advances from 11 => 12.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(3, 5) advances from 11 => 12.
+[Make]                                       Server(Candidate, 2, 6) waits timeout.
+[Make]                                       Server(Candidate, 2, 6) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 7) begins broadcast RequestVote RPCs to all peers.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 11 => 12.
+[#2B Make]                                   Server(Leader, 4, 5) applied logs[12, 12].
+-------------- Reply(12) -------------------
+[Server-PutAppend]                           Server(4): Reply SUCCESS from raft for command(427503304860601474).
+[Server-PutAppend]                           Server(4): Return result for command(427503304860601474). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y.
+===========command(427503304860601474)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y"]
+=============================
+[Clerk-Get]                                  Client(Nxzn90bBYb) issues a command(2725249274556607960): {0 2725249274556607960 13}.
+[#2B Make]                                   Server(Follower, 0, 5) applied logs[12, 12].
+[#2B Make]                                   Server(Follower, 1, 5) applied logs[12, 12].
+[#2B Make]                                   Server(Follower, 3, 5) applied logs[12, 12].
+[#2B Start]                                  Server(Leader, 4, 5) appends log(13, {Get [0] 2725249274556607960 13}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(0, 5) advances from 12 => 13.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(3, 5) advances from 12 => 13.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(1, 5) advances from 12 => 13.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 12 => 13.
+[#2B Make]                                   Server(Leader, 4, 5) applied logs[13, 13].
+-------------- Reply(13) -------------------
+[Server-Get]                                 Server(4): Reply  SUCCESS from raft for command(2725249274556607960).
+[Server-Get]                                 Server(4): Return result for command(2725249274556607960). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y.
+===========command(2725249274556607960)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y"]
+=============================
+[Clerk-Get]                                  Command(2725249274556607960) call by client(Nxzn90bBYb) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[#2B Make]                                   Server(Follower, 3, 5) applied logs[13, 13].
+[Clerk-Get]                                  Client(Nxzn90bBYb) issues a command(1121969247572304358): {0 1121969247572304358 14}.
+[#2B Make]                                   Server(Follower, 1, 5) applied logs[13, 13].
+[#2B Make]                                   Server(Follower, 0, 5) applied logs[13, 13].
+[#2B Start]                                  Server(Leader, 4, 5) appends log(14, {Get [0] 1121969247572304358 14}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(0, 5) advances from 13 => 14.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(3, 5) advances from 13 => 14.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 5)'s matchIndex for Server(1, 5) advances from 13 => 14.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 13 => 14.
+[#2B Make]                                   Server(Leader, 4, 5) applied logs[14, 14].
+-------------- Reply(14) -------------------
+[Server-Get]                                 Server(4): Reply  SUCCESS from raft for command(1121969247572304358).
+[Server-Get]                                 Server(4): Return result for command(1121969247572304358). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y.
+===========command(1121969247572304358)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y"]
+=============================
+[Clerk-Get]                                  Command(1121969247572304358) call by client(Nxzn90bBYb) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-PutAppend]                            Client(Nxzn90bBYb) issues a command(4029526183462149161): {0 x 0 5 y Append 4029526183462149161 15}.
+[#2B Make]                                   Server(Follower, 1, 5) applied logs[14, 14].
+[#2B Start]                                  Server(Leader, 4, 5) appends log(15, {Append [0 x 0 5 y] 4029526183462149161 15}).
+[Append Entries-sendAppendEntries]           Server(Follower, 4, 7) converts to follower by AppendEntries RPC reply from server(2, 7).
+[Make]                                       Server(Candidate, 2, 7) waits timeout.
+[Make]                                       Server(Candidate, 2, 7) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 8) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 7) will update its states by RequestVote RPC from server(2, 8).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 8) updates its states by RequestVote RPC from server(2, 8).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 8)'s logs  is newer than server(2)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 5) will update its states by RequestVote RPC from server(2, 8).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 8) updates its states by RequestVote RPC from server(2, 8).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 8)'s logs  is newer than server(2)'s.
+[Make]                                       Server(Candidate, 2, 8) waits timeout.
+[Make]                                       Server(Candidate, 2, 8) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 9) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 8) will update its states by RequestVote RPC from server(2, 9).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 9) updates its states by RequestVote RPC from server(2, 9).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 9)'s logs  is newer than server(2)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 8) will update its states by RequestVote RPC from server(2, 9).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 9) updates its states by RequestVote RPC from server(2, 9).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 9)'s logs  is newer than server(2)'s.
+[Make]                                       Server(Follower, 1, 9) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 1, 9) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 1, 10) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 9) will update its states by RequestVote RPC from server(1, 10).
+[Leader Election-RequestVoteHandler]         Server(Candidate, 2, 9) will update its states by RequestVote RPC from server(1, 10).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 10) updates its states by RequestVote RPC from server(1, 10).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 10) updates its states by RequestVote RPC from server(1, 10).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 10)'s logs  is newer than server(1)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 10) is asked to vote from server(1, 10).
+[Leader Election-sendRequestVote]            Server(Candidate, 1, 10) receives vote from server(2, 10), current votes is 2.
+[Make]                                       Server(Follower, 0, 5) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 0, 5) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 6) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 5) will update its states by RequestVote RPC from server(0, 6).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 6) updates its states by RequestVote RPC from server(0, 6).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 6) is asked to vote from server(0, 6).
+[Leader Election-sendRequestVote]            Server(Candidate, 0, 6) receives vote from server(3, 6), current votes is 2.
+[Make]                                       Server(Follower, 4, 10) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 4, 10) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 11) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 1, 10) will update its states by RequestVote RPC from server(4, 11).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 10) will update its states by RequestVote RPC from server(4, 11).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 11) updates its states by RequestVote RPC from server(4, 11).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 11) updates its states by RequestVote RPC from server(4, 11).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 11) is asked to vote from server(4, 11).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 11) is asked to vote from server(4, 11).
+[Leader Election-sendRequestVote]            Server(Candidate, 4, 11) receives vote from server(2, 11), current votes is 2.
+[Leader Election-sendRequestVote]            Server(Candidate, 4, 11) receives vote from server(1, 11), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 4, 11) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 4, 11) begins reinitialize nextIndex and matchIndex.
+[#2B Make]                                   Server(Follower, 2, 11) applied logs[1, 14].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 11)'s matchIndex for Server(2, 11) advances from 0 => 15.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 11)'s matchIndex for Server(1, 11) advances from 0 => 15.
+[Server-PutAppend]                            Server(4) wait raft timeout for command(4029526183462149161)!
+[Clerk-PutAppend]                            Server(3) reply error for command(4029526183462149161): Request lost by raft node.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(4029526183462149161): {0 x 0 5 y Append 4029526183462149161 15} by redirecting  to Server(4).
+[Make]                                       Server(Follower, 3, 6) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 3, 6) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 3, 7) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 0, 6) will update its states by RequestVote RPC from server(3, 7).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 7) updates its states by RequestVote RPC from server(3, 7).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 7) is asked to vote from server(3, 7).
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 7) receives vote from server(0, 7), current votes is 2.
+[Server-PutAppend]                           Client choose Server(1), wrong!
+[Clerk-PutAppend]                            Server(4) reply error for command(4029526183462149161): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(4029526183462149161): {0 x 0 5 y Append 4029526183462149161 15} by redirecting  to Server(0).
+[Server-PutAppend]                           Client choose Server(2), wrong!
+[Clerk-PutAppend]                            Server(0) reply error for command(4029526183462149161): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(4029526183462149161): {0 x 0 5 y Append 4029526183462149161 15} by redirecting  to Server(1).
+[Append Entries-AppendEntriesHandler]        Server(Follower, 3, 11) update its states by AppendEntries RPC from server(4, 11).
+[Append Entries-AppendEntriesHandler]        Server(Follower, 0, 11) update its states by AppendEntries RPC from server(4, 11).
+[Server-PutAppend]                           Client choose Server(0), wrong!
+[Clerk-PutAppend]                            Server(1) reply error for command(4029526183462149161): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(4029526183462149161): {0 x 0 5 y Append 4029526183462149161 15} by redirecting  to Server(2).
+[#2B Make]                                   Server(Follower, 0, 11) applied logs[14, 14].
+[#2B Make]                                   Server(Follower, 3, 11) applied logs[14, 14].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 11)'s matchIndex for Server(0, 11) advances from 0 => 15.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 11)'s matchIndex for Server(3, 11) advances from 0 => 15.
+[Server-PutAppend]                           Client choose Server(3), wrong!
+[Clerk-PutAppend]                            Server(2) reply error for command(4029526183462149161): Request host is not the leader.
+[Clerk-Get]                                  Client(Nxzn90bBYb) sends a command(4029526183462149161): {0 x 0 5 y Append 4029526183462149161 15} by redirecting  to Server(3).
+[#2B Start]                                  Server(Leader, 4, 11) appends log(16, {Append [0 x 0 5 y] 4029526183462149161 15}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 11)'s matchIndex for Server(3, 11) advances from 15 => 16.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 11)'s matchIndex for Server(0, 11) advances from 15 => 16.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 4, 11)'s matchIndex for Server(1, 11) advances from 15 => 16.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 14 => 16.
+[Server-HandleApplyMsg]                      Server(4) command(4029526183462149161) exists in Map successCall!.
+-------------- Reply(15) -------------------
+[Server-PutAppend]                           Server(4): Reply SUCCESS from raft for command(4029526183462149161).
+[Server-PutAppend]                           Server(4): Return result for command(4029526183462149161). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y.
+===========command(4029526183462149161)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y"]
+=============================
+[#2B Make]                                   Server(Leader, 4, 11) applied logs[15, 16].
+[Server-HandleApplyMsg]                      Server(1) command(4029526183462149161) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 1, 11) applied logs[15, 16].
+[Server-HandleApplyMsg]                      Server(0) command(4029526183462149161) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 0, 11) applied logs[15, 16].
+[Server-HandleApplyMsg]                      Server(3) command(4029526183462149161) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 3, 11) applied logs[15, 16].
+[Make]                                       Server(Follower, 2, 11) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 2, 11) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 12) begins broadcast RequestVote RPCs to all peers.
+[Make]                                       Server(Candidate, 2, 12) waits timeout.
+[Make]                                       Server(Candidate, 2, 12) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 13) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 11) will update its states by RequestVote RPC from server(2, 13).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 11) will update its states by RequestVote RPC from server(2, 13).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 13) updates its states by RequestVote RPC from server(2, 13).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 11) will update its states by RequestVote RPC from server(2, 13).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 13) updates its states by RequestVote RPC from server(2, 13).
+[Leader Election-RequestVoteHandler]         Server(Leader, 4, 11) will update its states by RequestVote RPC from server(2, 13).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 13)'s logs  is newer than server(2)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 13) updates its states by RequestVote RPC from server(2, 13).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 13)'s logs  is newer than server(2)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 13) updates its states by RequestVote RPC from server(2, 13).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 13)'s logs  is newer than server(2)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 13)'s logs  is newer than server(2)'s.
+[Make]                                       Server(Follower, 3, 13) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 3, 13) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 3, 14) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 13) will update its states by RequestVote RPC from server(3, 14).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 14) updates its states by RequestVote RPC from server(3, 14).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 14) is asked to vote from server(3, 14).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 13) will update its states by RequestVote RPC from server(3, 14).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 14) updates its states by RequestVote RPC from server(3, 14).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 13) will update its states by RequestVote RPC from server(3, 14).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 14) is asked to vote from server(3, 14).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 14) updates its states by RequestVote RPC from server(3, 14).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 14) is asked to vote from server(3, 14).
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 14) receives vote from server(4, 14), current votes is 2.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 2, 13) will update its states by RequestVote RPC from server(3, 14).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 14) updates its states by RequestVote RPC from server(3, 14).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 14) is asked to vote from server(3, 14).
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 14) receives vote from server(1, 14), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 3, 14) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 3, 14) begins reinitialize nextIndex and matchIndex.
+[Server-HandleApplyMsg]                      Server(2) command(4029526183462149161) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[15, 16].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 0 => 16.
+[Clerk-Get]                                  Client(H2LYd-Fc4i) issues a command(4406846453299066178): {0 4406846453299066178 1}.
+[Server-Get]                                 Client choose Server(0), wrong!
+[Clerk-Get]                                  Server(0) reply error for command(4406846453299066178): Request host is not the leader.
+[Clerk-Get]                                  Client(H2LYd-Fc4i) sends a command(4406846453299066178): {0 4406846453299066178 1} by redirecting  to Server(1).
+[Server-Get]                                 Client choose Server(1), wrong!
+[Clerk-Get]                                  Server(1) reply error for command(4406846453299066178): Request host is not the leader.
+[Clerk-Get]                                  Client(H2LYd-Fc4i) sends a command(4406846453299066178): {0 4406846453299066178 1} by redirecting  to Server(2).
+[Server-Get]                                 Client choose Server(4), wrong!
+[Clerk-Get]                                  Server(2) reply error for command(4406846453299066178): Request host is not the leader.
+[Clerk-Get]                                  Client(H2LYd-Fc4i) sends a command(4406846453299066178): {0 4406846453299066178 1} by redirecting  to Server(3).
+[Server-Get]                                 Client choose Server(2), wrong!
+[Clerk-Get]                                  Server(3) reply error for command(4406846453299066178): Request host is not the leader.
+[Clerk-Get]                                  Client(H2LYd-Fc4i) sends a command(4406846453299066178): {0 4406846453299066178 1} by redirecting  to Server(4).
+[#2B Start]                                  Server(Leader, 3, 14) appends log(17, {Get [0] 4406846453299066178 1}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(1, 14) advances from 16 => 17.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(0, 14) advances from 16 => 17.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(4, 14) advances from 16 => 17.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 16 => 17.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 16 => 17.
+[#2B Make]                                   Server(Leader, 3, 14) applied logs[17, 17].
+-------------- Reply(1) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(4406846453299066178).
+[Server-Get]                                 Server(3): Return result for command(4406846453299066178). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y.
+===========command(4406846453299066178)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y"]
+=============================
+[Clerk-Get]                                  Command(4406846453299066178) call by client(H2LYd-Fc4i) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y 
+[Clerk-MakeClerk]                            Client(H8j44bP_Ac) create...
+[Clerk-PutAppend]                            Client(H8j44bP_Ac) issues a command(1750950651642638104): {0  Put 1750950651642638104 1}.
+[#2B Make]                                   Server(Follower, 0, 14) applied logs[17, 17].
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[17, 17].
+[#2B Make]                                   Server(Follower, 1, 14) applied logs[17, 17].
+[Server-PutAppend]                           Client choose Server(2), wrong!
+[#2B Make]                                   Server(Follower, 4, 14) applied logs[17, 17].
+[Clerk-PutAppend]                            Server(0) reply error for command(1750950651642638104): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(1750950651642638104): {0  Put 1750950651642638104 1} by redirecting  to Server(1).
+[Server-PutAppend]                           Client choose Server(1), wrong!
+[Clerk-PutAppend]                            Server(1) reply error for command(1750950651642638104): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(1750950651642638104): {0  Put 1750950651642638104 1} by redirecting  to Server(2).
+[Server-PutAppend]                           Client choose Server(4), wrong!
+[Clerk-PutAppend]                            Server(2) reply error for command(1750950651642638104): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(1750950651642638104): {0  Put 1750950651642638104 1} by redirecting  to Server(3).
+[Server-PutAppend]                           Client choose Server(0), wrong!
+[Clerk-PutAppend]                            Server(3) reply error for command(1750950651642638104): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(1750950651642638104): {0  Put 1750950651642638104 1} by redirecting  to Server(4).
+[#2B Start]                                  Server(Leader, 3, 14) appends log(18, {Put [0 ] 1750950651642638104 1}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(1, 14) advances from 17 => 18.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(4, 14) advances from 17 => 18.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 17 => 18.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(0, 14) advances from 17 => 18.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 17 => 18.
+[#2B Make]                                   Server(Leader, 3, 14) applied logs[18, 18].
+-------------- Reply(1) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(1750950651642638104).
+[Server-PutAppend]                           Server(3): Return result for command(1750950651642638104). result: key=0, value=.
+===========command(1750950651642638104)==================
+map["0":""]
+=============================
+[Clerk-Get]                                  Client(H8j44bP_Ac) issues a command(1596103769792946416): {0 1596103769792946416 2}.
+[#2B Make]                                   Server(Follower, 4, 14) applied logs[18, 18].
+[#2B Make]                                   Server(Follower, 1, 14) applied logs[18, 18].
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[18, 18].
+[#2B Make]                                   Server(Follower, 0, 14) applied logs[18, 18].
+[#2B Start]                                  Server(Leader, 3, 14) appends log(19, {Get [0] 1596103769792946416 2}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(1, 14) advances from 18 => 19.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 18 => 19.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(4, 14) advances from 18 => 19.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(0, 14) advances from 18 => 19.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 18 => 19.
+[#2B Make]                                   Server(Leader, 3, 14) applied logs[19, 19].
+-------------- Reply(2) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(1596103769792946416).
+[Server-Get]                                 Server(3): Return result for command(1596103769792946416). result: key=0, value=.
+===========command(1596103769792946416)==================
+map["0":""]
+=============================
+[Clerk-Get]                                  Command(1596103769792946416) call by client(H8j44bP_Ac) result:  
+[Clerk-PutAppend]                            Client(H8j44bP_Ac) issues a command(2693798721457452073): {0 x 0 0 y Append 2693798721457452073 3}.
+[#2B Make]                                   Server(Follower, 4, 14) applied logs[19, 19].
+[#2B Make]                                   Server(Follower, 1, 14) applied logs[19, 19].
+[#2B Make]                                   Server(Follower, 0, 14) applied logs[19, 19].
+[#2B Start]                                  Server(Leader, 3, 14) appends log(20, {Append [0 x 0 0 y] 2693798721457452073 3}).
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[19, 19].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(0, 14) advances from 19 => 20.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(1, 14) advances from 19 => 20.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(4, 14) advances from 19 => 20.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 19 => 20.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 19 => 20.
+[#2B Make]                                   Server(Leader, 3, 14) applied logs[20, 20].
+-------------- Reply(3) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(2693798721457452073).
+[Server-PutAppend]                           Server(3): Return result for command(2693798721457452073). result: key=0, value=x 0 0 y.
+===========command(2693798721457452073)==================
+map["0":"x 0 0 y"]
+=============================
+[Clerk-Get]                                  Client(H8j44bP_Ac) issues a command(3596841126810729010): {0 3596841126810729010 4}.
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[20, 20].
+[#2B Make]                                   Server(Follower, 0, 14) applied logs[20, 20].
+[#2B Make]                                   Server(Follower, 1, 14) applied logs[20, 20].
+[#2B Start]                                  Server(Leader, 3, 14) appends log(21, {Get [0] 3596841126810729010 4}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(1, 14) advances from 20 => 21.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(0, 14) advances from 20 => 21.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 20 => 21.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 20 => 21.
+[#2B Make]                                   Server(Leader, 3, 14) applied logs[21, 21].
+-------------- Reply(4) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(3596841126810729010).
+[Server-Get]                                 Server(3): Return result for command(3596841126810729010). result: key=0, value=x 0 0 y.
+===========command(3596841126810729010)==================
+map["0":"x 0 0 y"]
+=============================
+[Clerk-Get]                                  Command(3596841126810729010) call by client(H8j44bP_Ac) result: x 0 0 y 
+[Clerk-Get]                                  Client(H8j44bP_Ac) issues a command(117634868677873971): {0 117634868677873971 5}.
+[#2B Make]                                   Server(Follower, 1, 14) applied logs[21, 21].
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[21, 21].
+[#2B Make]                                   Server(Follower, 0, 14) applied logs[21, 21].
+[#2B Start]                                  Server(Leader, 3, 14) appends log(22, {Get [0] 117634868677873971 5}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(0, 14) advances from 21 => 22.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 21 => 22.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(1, 14) advances from 21 => 22.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 21 => 22.
+[#2B Make]                                   Server(Leader, 3, 14) applied logs[22, 22].
+-------------- Reply(5) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(117634868677873971).
+[Server-Get]                                 Server(3): Return result for command(117634868677873971). result: key=0, value=x 0 0 y.
+===========command(117634868677873971)==================
+map["0":"x 0 0 y"]
+=============================
+[Clerk-Get]                                  Command(117634868677873971) call by client(H8j44bP_Ac) result: x 0 0 y 
+[Clerk-Get]                                  Client(H8j44bP_Ac) issues a command(1094858186981257541): {0 1094858186981257541 6}.
+[#2B Make]                                   Server(Follower, 1, 14) applied logs[22, 22].
+[#2B Make]                                   Server(Follower, 0, 14) applied logs[22, 22].
+[#2B Start]                                  Server(Leader, 3, 14) appends log(23, {Get [0] 1094858186981257541 6}).
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[22, 22].
+[Make]                                       Server(Follower, 4, 14) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 4, 14) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 15) begins broadcast RequestVote RPCs to all peers.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(0, 14) advances from 22 => 23.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(1, 14) advances from 22 => 23.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 22 => 23.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 22 => 23.
+[#2B Make]                                   Server(Leader, 3, 14) applied logs[23, 23].
+-------------- Reply(6) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(1094858186981257541).
+[Server-Get]                                 Server(3): Return result for command(1094858186981257541). result: key=0, value=x 0 0 y.
+===========command(1094858186981257541)==================
+map["0":"x 0 0 y"]
+=============================
+[Clerk-Get]                                  Command(1094858186981257541) call by client(H8j44bP_Ac) result: x 0 0 y 
+[Clerk-Get]                                  Client(H8j44bP_Ac) issues a command(1025131889356990931): {0 1025131889356990931 7}.
+[#2B Start]                                  Server(Leader, 3, 14) appends log(24, {Get [0] 1025131889356990931 7}).
+[#2B Make]                                   Server(Follower, 1, 14) applied logs[23, 23].
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[23, 23].
+[#2B Make]                                   Server(Follower, 0, 14) applied logs[23, 23].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(1, 14) advances from 23 => 24.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(0, 14) advances from 23 => 24.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 23 => 24.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 23 => 24.
+[#2B Make]                                   Server(Leader, 3, 14) applied logs[24, 24].
+-------------- Reply(7) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(1025131889356990931).
+[Server-Get]                                 Server(3): Return result for command(1025131889356990931). result: key=0, value=x 0 0 y.
+===========command(1025131889356990931)==================
+map["0":"x 0 0 y"]
+=============================
+[Clerk-Get]                                  Command(1025131889356990931) call by client(H8j44bP_Ac) result: x 0 0 y 
+[Clerk-Get]                                  Client(H8j44bP_Ac) issues a command(1383666878752929238): {0 1383666878752929238 8}.
+[#2B Make]                                   Server(Follower, 0, 14) applied logs[24, 24].
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[24, 24].
+[#2B Make]                                   Server(Follower, 1, 14) applied logs[24, 24].
+[#2B Start]                                  Server(Leader, 3, 14) appends log(25, {Get [0] 1383666878752929238 8}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(1, 14) advances from 24 => 25.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 24 => 25.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(0, 14) advances from 24 => 25.
+[Make]                                       Server(Candidate, 4, 15) waits timeout.
+[Make]                                       Server(Candidate, 4, 15) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 16) begins broadcast RequestVote RPCs to all peers.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 24 => 25.
+[#2B Make]                                   Server(Leader, 3, 14) applied logs[25, 25].
+-------------- Reply(8) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(1383666878752929238).
+[Server-Get]                                 Server(3): Return result for command(1383666878752929238). result: key=0, value=x 0 0 y.
+===========command(1383666878752929238)==================
+map["0":"x 0 0 y"]
+=============================
+[Clerk-Get]                                  Command(1383666878752929238) call by client(H8j44bP_Ac) result: x 0 0 y 
+[Clerk-PutAppend]                            Client(H8j44bP_Ac) issues a command(1235413781849190725): {0 x 0 1 y Append 1235413781849190725 9}.
+[#2B Make]                                   Server(Follower, 1, 14) applied logs[25, 25].
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[25, 25].
+[#2B Make]                                   Server(Follower, 0, 14) applied logs[25, 25].
+[#2B Start]                                  Server(Leader, 3, 14) appends log(26, {Append [0 x 0 1 y] 1235413781849190725 9}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(2, 14) advances from 25 => 26.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(1, 14) advances from 25 => 26.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 14)'s matchIndex for Server(0, 14) advances from 25 => 26.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 25 => 26.
+[#2B Make]                                   Server(Leader, 3, 14) applied logs[26, 26].
+-------------- Reply(9) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(1235413781849190725).
+[Server-PutAppend]                           Server(3): Return result for command(1235413781849190725). result: key=0, value=x 0 0 yx 0 1 y.
+===========command(1235413781849190725)==================
+map["0":"x 0 0 yx 0 1 y"]
+=============================
+[Clerk-Get]                                  Client(H8j44bP_Ac) issues a command(280142856120500041): {0 280142856120500041 10}.
+[#2B Make]                                   Server(Follower, 2, 14) applied logs[26, 26].
+[#2B Start]                                  Server(Leader, 3, 14) appends log(27, {Get [0] 280142856120500041 10}).
+[Append Entries-sendAppendEntries]           Server(Follower, 3, 16) converts to follower by AppendEntries RPC reply from server(4, 16).
+[Make]                                       Server(Candidate, 4, 16) waits timeout.
+[Make]                                       Server(Candidate, 4, 16) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 17) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 16) will update its states by RequestVote RPC from server(4, 17).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 17) updates its states by RequestVote RPC from server(4, 17).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 17)'s logs  is newer than server(4)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 14) will update its states by RequestVote RPC from server(4, 17).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 17) updates its states by RequestVote RPC from server(4, 17).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 17)'s logs  is newer than server(4)'s.
+[Make]                                       Server(Follower, 0, 14) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 0, 14) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 15) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 14) will update its states by RequestVote RPC from server(0, 15).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 15) updates its states by RequestVote RPC from server(0, 15).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 15) is asked to vote from server(0, 15).
+[Leader Election-sendRequestVote]            Server(Candidate, 0, 15) receives vote from server(1, 15), current votes is 2.
+[Make]                                       Server(Follower, 2, 17) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 2, 17) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 18) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 4, 17) will update its states by RequestVote RPC from server(2, 18).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 18) updates its states by RequestVote RPC from server(2, 18).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 18) is asked to vote from server(2, 18).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 17) will update its states by RequestVote RPC from server(2, 18).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 18) updates its states by RequestVote RPC from server(2, 18).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 18)'s logs  is newer than server(2)'s.
+[Leader Election-sendRequestVote]            Server(Candidate, 2, 18) receives vote from server(4, 18), current votes is 2.
+[Make]                                       Server(Follower, 3, 18) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 3, 18) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 3, 19) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 18) will update its states by RequestVote RPC from server(3, 19).
+[Leader Election-RequestVoteHandler]         Server(Candidate, 2, 18) will update its states by RequestVote RPC from server(3, 19).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 19) updates its states by RequestVote RPC from server(3, 19).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 19) updates its states by RequestVote RPC from server(3, 19).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 19) is asked to vote from server(3, 19).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 19) is asked to vote from server(3, 19).
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 19) receives vote from server(4, 19), current votes is 2.
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 19) receives vote from server(2, 19), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 3, 19) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 3, 19) begins reinitialize nextIndex and matchIndex.
+[#2B Make]                                   Server(Follower, 4, 19) applied logs[20, 26].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 19)'s matchIndex for Server(2, 19) advances from 0 => 27.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 19)'s matchIndex for Server(4, 19) advances from 0 => 27.
+[Make]                                       Server(Candidate, 0, 15) waits timeout.
+[Make]                                       Server(Candidate, 0, 15) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 16) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 15) will update its states by RequestVote RPC from server(0, 16).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 16) updates its states by RequestVote RPC from server(0, 16).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 16) is asked to vote from server(0, 16).
+[Leader Election-sendRequestVote]            Server(Candidate, 0, 16) receives vote from server(1, 16), current votes is 2.
+[Server-Get]                                  Server(3) wait raft timeout for command(280142856120500041)!
+[Clerk-Get]                                  Server(4) reply error for command(280142856120500041): Request lost by raft node.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(280142856120500041): {0 280142856120500041 10} by redirecting  to Server(0).
+[Server-Get]                                 Client choose Server(2), wrong!
+[Clerk-Get]                                  Server(0) reply error for command(280142856120500041): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(280142856120500041): {0 280142856120500041 10} by redirecting  to Server(1).
+[Append Entries-AppendEntriesHandler]        Server(Follower, 1, 19) update its states by AppendEntries RPC from server(3, 19).
+[Make]                                       Server(Candidate, 0, 16) waits timeout.
+[Make]                                       Server(Candidate, 0, 16) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 17) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 19) rejects a (outdated) RequestVote RPC from server(0, 17).
+[Server-Get]                                 Client choose Server(1), wrong!
+[Clerk-Get]                                  Server(1) reply error for command(280142856120500041): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(280142856120500041): {0 280142856120500041 10} by redirecting  to Server(2).
+[#2B Make]                                   Server(Follower, 1, 19) applied logs[26, 26].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 19)'s matchIndex for Server(1, 19) advances from 0 => 27.
+[Server-Get]                                 Client choose Server(4), wrong!
+[Clerk-Get]                                  Server(2) reply error for command(280142856120500041): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(280142856120500041): {0 280142856120500041 10} by redirecting  to Server(3).
+[Server-Get]                                 Client choose Server(0), wrong!
+[Clerk-Get]                                  Server(3) reply error for command(280142856120500041): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(280142856120500041): {0 280142856120500041 10} by redirecting  to Server(4).
+[#2B Start]                                  Server(Leader, 3, 19) appends log(28, {Get [0] 280142856120500041 10}).
+[Make]                                       Server(Follower, 4, 19) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 4, 19) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 20) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 19) will update its states by RequestVote RPC from server(4, 20).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 20) updates its states by RequestVote RPC from server(4, 20).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 20) is asked to vote from server(4, 20).
+[Leader Election-sendRequestVote]            Server(Candidate, 4, 20) receives vote from server(0, 20), current votes is 2.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 19)'s matchIndex for Server(1, 19) advances from 27 => 28.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 19)'s matchIndex for Server(2, 19) advances from 27 => 28.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 26 => 28.
+[Server-HandleApplyMsg]                      Server(3) command(280142856120500041) exists in Map successCall!.
+-------------- Reply(10) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(280142856120500041).
+[Server-Get]                                 Server(3): Return result for command(280142856120500041). result: key=0, value=x 0 0 yx 0 1 y.
+===========command(280142856120500041)==================
+map["0":"x 0 0 yx 0 1 y"]
+=============================
+[#2B Make]                                   Server(Leader, 3, 19) applied logs[27, 28].
+[Clerk-Get]                                  Command(280142856120500041) call by client(H8j44bP_Ac) result: x 0 0 yx 0 1 y 
+[Clerk-PutAppend]                            Client(H8j44bP_Ac) issues a command(4297432790493544158): {0 x 0 2 y Append 4297432790493544158 11}.
+[#2B Start]                                  Server(Leader, 3, 19) appends log(29, {Append [0 x 0 2 y] 4297432790493544158 11}).
+[Server-HandleApplyMsg]                      Server(2) command(280142856120500041) exists in Map successCall!.
+[Server-HandleApplyMsg]                      Server(1) command(280142856120500041) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 1, 19) applied logs[27, 28].
+[#2B Make]                                   Server(Follower, 2, 19) applied logs[27, 28].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 19)'s matchIndex for Server(1, 19) advances from 28 => 29.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 19)'s matchIndex for Server(2, 19) advances from 28 => 29.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 28 => 29.
+[#2B Make]                                   Server(Leader, 3, 19) applied logs[29, 29].
+-------------- Reply(11) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(4297432790493544158).
+[Server-PutAppend]                           Server(3): Return result for command(4297432790493544158). result: key=0, value=x 0 0 yx 0 1 yx 0 2 y.
+===========command(4297432790493544158)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 y"]
+=============================
+[Clerk-PutAppend]                            Client(H8j44bP_Ac) issues a command(568880993238830786): {0 x 0 3 y Append 568880993238830786 12}.
+[#2B Make]                                   Server(Follower, 1, 19) applied logs[29, 29].
+[#2B Make]                                   Server(Follower, 2, 19) applied logs[29, 29].
+[#2B Start]                                  Server(Leader, 3, 19) appends log(30, {Append [0 x 0 3 y] 568880993238830786 12}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 19)'s matchIndex for Server(1, 19) advances from 29 => 30.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 19)'s matchIndex for Server(2, 19) advances from 29 => 30.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 29 => 30.
+[#2B Make]                                   Server(Leader, 3, 19) applied logs[30, 30].
+-------------- Reply(12) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(568880993238830786).
+[Server-PutAppend]                           Server(3): Return result for command(568880993238830786). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 y.
+===========command(568880993238830786)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 y"]
+=============================
+[Clerk-Get]                                  Client(H8j44bP_Ac) issues a command(841124215411650782): {0 841124215411650782 13}.
+[#2B Start]                                  Server(Leader, 3, 19) appends log(31, {Get [0] 841124215411650782 13}).
+[#2B Make]                                   Server(Follower, 1, 19) applied logs[30, 30].
+[#2B Make]                                   Server(Follower, 2, 19) applied logs[30, 30].
+[Make]                                       Server(Follower, 0, 20) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 0, 20) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 21) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 19) will update its states by RequestVote RPC from server(0, 21).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 21) updates its states by RequestVote RPC from server(0, 21).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 21)'s logs  is newer than server(0)'s.
+[Leader Election-RequestVoteHandler]         Server(Leader, 3, 19) will update its states by RequestVote RPC from server(0, 21).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 21) updates its states by RequestVote RPC from server(0, 21).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 21)'s logs  is newer than server(0)'s.
+[Make]                                       Server(Candidate, 4, 20) waits timeout.
+[Make]                                       Server(Candidate, 4, 20) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 21) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 19) will update its states by RequestVote RPC from server(4, 21).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 21) updates its states by RequestVote RPC from server(4, 21).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 21)'s logs  is newer than server(4)'s.
+[Make]                                       Server(Follower, 1, 21) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 1, 21) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 1, 22) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 0, 21) will update its states by RequestVote RPC from server(1, 22).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 21) will update its states by RequestVote RPC from server(1, 22).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 22) updates its states by RequestVote RPC from server(1, 22).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 22) updates its states by RequestVote RPC from server(1, 22).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 22)'s logs  is newer than server(1)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 22) is asked to vote from server(1, 22).
+[Leader Election-sendRequestVote]            Server(Candidate, 1, 22) receives vote from server(0, 22), current votes is 2.
+[Make]                                       Server(Follower, 2, 21) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 2, 21) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 22) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 4, 21) will update its states by RequestVote RPC from server(2, 22).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 22) updates its states by RequestVote RPC from server(2, 22).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 22) is asked to vote from server(2, 22).
+[Make]                                       Server(Follower, 3, 22) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 3, 22) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 3, 23) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-sendRequestVote]            Server(Candidate, 2, 22) receives vote from server(4, 22), current votes is 2.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 1, 22) will update its states by RequestVote RPC from server(3, 23).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 22) will update its states by RequestVote RPC from server(3, 23).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 23) updates its states by RequestVote RPC from server(3, 23).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 23) updates its states by RequestVote RPC from server(3, 23).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 23) is asked to vote from server(3, 23).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 23) is asked to vote from server(3, 23).
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 23) receives vote from server(0, 23), current votes is 2.
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 23) receives vote from server(1, 23), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 3, 23) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 3, 23) begins reinitialize nextIndex and matchIndex.
+[Server-HandleApplyMsg]                      Server(0) command(280142856120500041) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 0, 23) applied logs[26, 30].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 23)'s matchIndex for Server(0, 23) advances from 0 => 31.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 23)'s matchIndex for Server(1, 23) advances from 0 => 31.
+[Server-Get]                                  Server(3) wait raft timeout for command(841124215411650782)!
+[Clerk-Get]                                  Server(4) reply error for command(841124215411650782): Request lost by raft node.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(841124215411650782): {0 841124215411650782 13} by redirecting  to Server(0).
+[Make]                                       Server(Follower, 4, 22) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 4, 22) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 23) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 2, 22) will update its states by RequestVote RPC from server(4, 23).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 23) updates its states by RequestVote RPC from server(4, 23).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 23)'s logs  is newer than server(4)'s.
+[Server-Get]                                 Client choose Server(2), wrong!
+[Clerk-Get]                                  Server(0) reply error for command(841124215411650782): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(841124215411650782): {0 841124215411650782 13} by redirecting  to Server(1).
+[Make]                                       Server(Follower, 2, 23) waits timeout.
+[Server-Get]                                 Client choose Server(1), wrong!
+[Clerk-Get]                                  Server(1) reply error for command(841124215411650782): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(841124215411650782): {0 841124215411650782 13} by redirecting  to Server(2).
+[Server-Get]                                 Client choose Server(4), wrong!
+[Clerk-Get]                                  Server(2) reply error for command(841124215411650782): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(841124215411650782): {0 841124215411650782 13} by redirecting  to Server(3).
+[Server-HandleApplyMsg]                      Server(4) command(280142856120500041) exists in Map successCall!.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 23)'s matchIndex for Server(4, 23) advances from 0 => 31.
+[#2B Make]                                   Server(Follower, 4, 23) applied logs[27, 30].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 23)'s matchIndex for Server(2, 23) advances from 0 => 31.
+[Server-Get]                                 Client choose Server(0), wrong!
+[Clerk-Get]                                  Server(3) reply error for command(841124215411650782): Request host is not the leader.
+[Clerk-Get]                                  Client(H8j44bP_Ac) sends a command(841124215411650782): {0 841124215411650782 13} by redirecting  to Server(4).
+[#2B Start]                                  Server(Leader, 3, 23) appends log(32, {Get [0] 841124215411650782 13}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 23)'s matchIndex for Server(4, 23) advances from 31 => 32.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 23)'s matchIndex for Server(2, 23) advances from 31 => 32.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 23)'s matchIndex for Server(1, 23) advances from 31 => 32.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 30 => 32.
+[Server-HandleApplyMsg]                      Server(3) command(841124215411650782) exists in Map successCall!.
+-------------- Reply(13) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(841124215411650782).
+[Server-Get]                                 Server(3): Return result for command(841124215411650782). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 y.
+===========command(841124215411650782)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 y"]
+=============================
+[Clerk-Get]                                  Command(841124215411650782) call by client(H8j44bP_Ac) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 y 
+[Server-HandleApplyMsg]                      Server(4) command(841124215411650782) exists in Map successCall!.
+[Clerk-PutAppend]                            Client(H8j44bP_Ac) issues a command(3404583554220464939): {0 x 0 4 y Append 3404583554220464939 14}.
+[#2B Make]                                   Server(Follower, 4, 23) applied logs[31, 32].
+[#2B Make]                                   Server(Leader, 3, 23) applied logs[31, 32].
+[Server-HandleApplyMsg]                      Server(1) command(841124215411650782) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 1, 23) applied logs[31, 32].
+[Server-HandleApplyMsg]                      Server(2) command(841124215411650782) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 2, 23) applied logs[31, 32].
+[#2B Start]                                  Server(Leader, 3, 23) appends log(33, {Append [0 x 0 4 y] 3404583554220464939 14}).
+[Make]                                       Server(Follower, 0, 23) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 0, 23) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 24) begins broadcast RequestVote RPCs to all peers.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 23)'s matchIndex for Server(1, 23) advances from 32 => 33.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 23)'s matchIndex for Server(2, 23) advances from 32 => 33.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 23)'s matchIndex for Server(4, 23) advances from 32 => 33.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 32 => 33.
+[#2B Make]                                   Server(Leader, 3, 23) applied logs[33, 33].
+-------------- Reply(14) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(3404583554220464939).
+[Server-PutAppend]                           Server(3): Return result for command(3404583554220464939). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y.
+===========command(3404583554220464939)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y"]
+=============================
+[#2B Make]                                   Server(Follower, 2, 23) applied logs[33, 33].
+[#2B Make]                                   Server(Follower, 4, 23) applied logs[33, 33].
+[#2B Make]                                   Server(Follower, 1, 23) applied logs[33, 33].
+[Make]                                       Server(Candidate, 0, 24) waits timeout.
+[Make]                                       Server(Candidate, 0, 24) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 25) begins broadcast RequestVote RPCs to all peers.
+[Append Entries-sendAppendEntries]           Server(Follower, 3, 25) converts to follower by AppendEntries RPC reply from server(0, 25).
+[Make]                                       Server(Follower, 2, 23) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 2, 23) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 24) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 23) will update its states by RequestVote RPC from server(2, 24).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 24) updates its states by RequestVote RPC from server(2, 24).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 24) is asked to vote from server(2, 24).
+[Leader Election-RequestVoteHandler]         Server(Candidate, 0, 25) rejects a (outdated) RequestVote RPC from server(2, 24).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 25) rejects a (outdated) RequestVote RPC from server(2, 24).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 23) will update its states by RequestVote RPC from server(2, 24).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 24) updates its states by RequestVote RPC from server(2, 24).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 24) is asked to vote from server(2, 24).
+[Leader Election-sendRequestVote]            Server(Candidate, 2, 24) receives vote from server(4, 24), current votes is 2.
+[Make]                                       Server(Candidate, 0, 25) waits timeout.
+[Make]                                       Server(Candidate, 0, 25) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 26) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 24) will update its states by RequestVote RPC from server(0, 26).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 26) updates its states by RequestVote RPC from server(0, 26).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 26)'s logs  is newer than server(0)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 25) will update its states by RequestVote RPC from server(0, 26).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 26) updates its states by RequestVote RPC from server(0, 26).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 26)'s logs  is newer than server(0)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 24) will update its states by RequestVote RPC from server(0, 26).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 25) will update its states by RequestVote RPC from server(0, 26).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 26) updates its states by RequestVote RPC from server(0, 26).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 26) updates its states by RequestVote RPC from server(0, 26).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 26)'s logs  is newer than server(0)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 26)'s logs  is newer than server(0)'s.
+[Make]                                       Server(Follower, 3, 26) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 3, 26) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 3, 27) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 26) will update its states by RequestVote RPC from server(3, 27).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 27) updates its states by RequestVote RPC from server(3, 27).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 27) is asked to vote from server(3, 27).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 26) will update its states by RequestVote RPC from server(3, 27).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 27) updates its states by RequestVote RPC from server(3, 27).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 27) is asked to vote from server(3, 27).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 26) will update its states by RequestVote RPC from server(3, 27).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 27) updates its states by RequestVote RPC from server(3, 27).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 27) is asked to vote from server(3, 27).
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 27) receives vote from server(4, 27), current votes is 2.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 0, 26) will update its states by RequestVote RPC from server(3, 27).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 27) updates its states by RequestVote RPC from server(3, 27).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 27) is asked to vote from server(3, 27).
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 27) receives vote from server(1, 27), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 3, 27) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 3, 27) begins reinitialize nextIndex and matchIndex.
+[Server-HandleApplyMsg]                      Server(0) command(841124215411650782) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[31, 33].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 0 => 33.
+[Clerk-Get]                                  Client(H2LYd-Fc4i) issues a command(363278017432813796): {0 363278017432813796 2}.
+[#2B Start]                                  Server(Leader, 3, 27) appends log(34, {Get [0] 363278017432813796 2}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(4, 27) advances from 33 => 34.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 33 => 34.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 33 => 34.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(2, 27) advances from 33 => 34.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 33 => 34.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[34, 34].
+-------------- Reply(2) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(363278017432813796).
+[Server-Get]                                 Server(3): Return result for command(363278017432813796). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y.
+===========command(363278017432813796)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y"]
+=============================
+[Clerk-Get]                                  Command(363278017432813796) call by client(H2LYd-Fc4i) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-MakeClerk]                            Client(M3CrDTAlT9) create...
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(3025186870434507945): {0  Put 3025186870434507945 1}.
+[#2B Make]                                   Server(Follower, 4, 27) applied logs[34, 34].
+[Server-PutAppend]                           Client choose Server(1), wrong!
+[Clerk-PutAppend]                            Server(0) reply error for command(3025186870434507945): Request host is not the leader.
+[Clerk-Get]                                  Client(M3CrDTAlT9) sends a command(3025186870434507945): {0  Put 3025186870434507945 1} by redirecting  to Server(1).
+[#2B Make]                                   Server(Follower, 2, 27) applied logs[34, 34].
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[34, 34].
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[34, 34].
+[Server-PutAppend]                           Client choose Server(2), wrong!
+[Clerk-PutAppend]                            Server(1) reply error for command(3025186870434507945): Request host is not the leader.
+[Clerk-Get]                                  Client(M3CrDTAlT9) sends a command(3025186870434507945): {0  Put 3025186870434507945 1} by redirecting  to Server(2).
+[Server-PutAppend]                           Client choose Server(4), wrong!
+[Clerk-PutAppend]                            Server(2) reply error for command(3025186870434507945): Request host is not the leader.
+[Clerk-Get]                                  Client(M3CrDTAlT9) sends a command(3025186870434507945): {0  Put 3025186870434507945 1} by redirecting  to Server(3).
+[#2B Start]                                  Server(Leader, 3, 27) appends log(35, {Put [0 ] 3025186870434507945 1}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 34 => 35.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 34 => 35.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(4, 27) advances from 34 => 35.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(2, 27) advances from 34 => 35.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 34 => 35.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[35, 35].
+-------------- Reply(1) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(3025186870434507945).
+[Server-PutAppend]                           Server(3): Return result for command(3025186870434507945). result: key=0, value=.
+===========command(3025186870434507945)==================
+map["0":""]
+=============================
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(711520017259751723): {0 x 0 0 y Append 711520017259751723 2}.
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[35, 35].
+[#2B Make]                                   Server(Follower, 4, 27) applied logs[35, 35].
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[35, 35].
+[#2B Start]                                  Server(Leader, 3, 27) appends log(36, {Append [0 x 0 0 y] 711520017259751723 2}).
+[#2B Make]                                   Server(Follower, 2, 27) applied logs[35, 35].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(4, 27) advances from 35 => 36.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 35 => 36.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 35 => 36.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(2, 27) advances from 35 => 36.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 35 => 36.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[36, 36].
+-------------- Reply(2) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(711520017259751723).
+[Server-PutAppend]                           Server(3): Return result for command(711520017259751723). result: key=0, value=x 0 0 y.
+===========command(711520017259751723)==================
+map["0":"x 0 0 y"]
+=============================
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(3749022465392099682): {0 x 0 1 y Append 3749022465392099682 3}.
+[#2B Make]                                   Server(Follower, 4, 27) applied logs[36, 36].
+[#2B Start]                                  Server(Leader, 3, 27) appends log(37, {Append [0 x 0 1 y] 3749022465392099682 3}).
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[36, 36].
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[36, 36].
+[#2B Make]                                   Server(Follower, 2, 27) applied logs[36, 36].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(4, 27) advances from 36 => 37.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 36 => 37.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(2, 27) advances from 36 => 37.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 36 => 37.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 36 => 37.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[37, 37].
+-------------- Reply(3) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(3749022465392099682).
+[Server-PutAppend]                           Server(3): Return result for command(3749022465392099682). result: key=0, value=x 0 0 yx 0 1 y.
+===========command(3749022465392099682)==================
+map["0":"x 0 0 yx 0 1 y"]
+=============================
+[Clerk-Get]                                  Client(M3CrDTAlT9) issues a command(2794442374953848379): {0 2794442374953848379 4}.
+[#2B Start]                                  Server(Leader, 3, 27) appends log(38, {Get [0] 2794442374953848379 4}).
+[#2B Make]                                   Server(Follower, 4, 27) applied logs[37, 37].
+[#2B Make]                                   Server(Follower, 2, 27) applied logs[37, 37].
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[37, 37].
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[37, 37].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 37 => 38.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 37 => 38.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 37 => 38.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[38, 38].
+-------------- Reply(4) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(2794442374953848379).
+[Server-Get]                                 Server(3): Return result for command(2794442374953848379). result: key=0, value=x 0 0 yx 0 1 y.
+===========command(2794442374953848379)==================
+map["0":"x 0 0 yx 0 1 y"]
+=============================
+[Clerk-Get]                                  Command(2794442374953848379) call by client(M3CrDTAlT9) result: x 0 0 yx 0 1 y 
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(45990697418777118): {0 x 0 2 y Append 45990697418777118 5}.
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[38, 38].
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[38, 38].
+[#2B Start]                                  Server(Leader, 3, 27) appends log(39, {Append [0 x 0 2 y] 45990697418777118 5}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 38 => 39.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 38 => 39.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 38 => 39.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[39, 39].
+-------------- Reply(5) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(45990697418777118).
+[Server-PutAppend]                           Server(3): Return result for command(45990697418777118). result: key=0, value=x 0 0 yx 0 1 yx 0 2 y.
+===========command(45990697418777118)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 y"]
+=============================
+[Clerk-Get]                                  Client(M3CrDTAlT9) issues a command(1188927455388033022): {0 1188927455388033022 6}.
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[39, 39].
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[39, 39].
+[#2B Start]                                  Server(Leader, 3, 27) appends log(40, {Get [0] 1188927455388033022 6}).
+[Make]                                       Server(Follower, 2, 27) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 2, 27) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 28) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 27) will update its states by RequestVote RPC from server(2, 28).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 28) updates its states by RequestVote RPC from server(2, 28).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 28) is asked to vote from server(2, 28).
+[Leader Election-sendRequestVote]            Server(Candidate, 2, 28) receives vote from server(4, 28), current votes is 2.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 39 => 40.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 39 => 40.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 39 => 40.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[40, 40].
+-------------- Reply(6) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(1188927455388033022).
+[Server-Get]                                 Server(3): Return result for command(1188927455388033022). result: key=0, value=x 0 0 yx 0 1 yx 0 2 y.
+===========command(1188927455388033022)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 y"]
+=============================
+[Clerk-Get]                                  Command(1188927455388033022) call by client(M3CrDTAlT9) result: x 0 0 yx 0 1 yx 0 2 y 
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(2867801716091752150): {0 x 0 3 y Append 2867801716091752150 7}.
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[40, 40].
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[40, 40].
+[#2B Start]                                  Server(Leader, 3, 27) appends log(41, {Append [0 x 0 3 y] 2867801716091752150 7}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 40 => 41.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 40 => 41.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 40 => 41.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[41, 41].
+-------------- Reply(7) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(2867801716091752150).
+[Server-PutAppend]                           Server(3): Return result for command(2867801716091752150). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 y.
+===========command(2867801716091752150)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 y"]
+=============================
+[Clerk-Get]                                  Client(M3CrDTAlT9) issues a command(733695718217108215): {0 733695718217108215 8}.
+[#2B Start]                                  Server(Leader, 3, 27) appends log(42, {Get [0] 733695718217108215 8}).
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[41, 41].
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[41, 41].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 41 => 42.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 41 => 42.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 41 => 42.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[42, 42].
+-------------- Reply(8) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(733695718217108215).
+[Server-Get]                                 Server(3): Return result for command(733695718217108215). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 y.
+===========command(733695718217108215)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 y"]
+=============================
+[Clerk-Get]                                  Command(733695718217108215) call by client(M3CrDTAlT9) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 y 
+[Clerk-Get]                                  Client(M3CrDTAlT9) issues a command(403316012634548609): {0 403316012634548609 9}.
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[42, 42].
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[42, 42].
+[#2B Start]                                  Server(Leader, 3, 27) appends log(43, {Get [0] 403316012634548609 9}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 42 => 43.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 42 => 43.
+[Make]                                       Server(Follower, 4, 28) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 4, 28) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 29) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 2, 28) will update its states by RequestVote RPC from server(4, 29).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 29) updates its states by RequestVote RPC from server(4, 29).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 29) is asked to vote from server(4, 29).
+[Leader Election-sendRequestVote]            Server(Candidate, 4, 29) receives vote from server(2, 29), current votes is 2.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 42 => 43.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[43, 43].
+-------------- Reply(9) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(403316012634548609).
+[Server-Get]                                 Server(3): Return result for command(403316012634548609). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 y.
+===========command(403316012634548609)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 y"]
+=============================
+[Clerk-Get]                                  Command(403316012634548609) call by client(M3CrDTAlT9) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 y 
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(2100551489436018957): {0 x 0 4 y Append 2100551489436018957 10}.
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[43, 43].
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[43, 43].
+[#2B Start]                                  Server(Leader, 3, 27) appends log(44, {Append [0 x 0 4 y] 2100551489436018957 10}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 43 => 44.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 43 => 44.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 43 => 44.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[44, 44].
+-------------- Reply(10) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(2100551489436018957).
+[Server-PutAppend]                           Server(3): Return result for command(2100551489436018957). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y.
+===========command(2100551489436018957)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y"]
+=============================
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(71657193361552022): {0 x 0 5 y Append 71657193361552022 11}.
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[44, 44].
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[44, 44].
+[#2B Start]                                  Server(Leader, 3, 27) appends log(45, {Append [0 x 0 5 y] 71657193361552022 11}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 44 => 45.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 44 => 45.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 44 => 45.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[45, 45].
+-------------- Reply(11) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(71657193361552022).
+[Server-PutAppend]                           Server(3): Return result for command(71657193361552022). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y.
+===========command(71657193361552022)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y"]
+=============================
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(2754023928954478572): {0 x 0 6 y Append 2754023928954478572 12}.
+[#2B Start]                                  Server(Leader, 3, 27) appends log(46, {Append [0 x 0 6 y] 2754023928954478572 12}).
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[45, 45].
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[45, 45].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 45 => 46.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 45 => 46.
+[Make]                                       Server(Follower, 2, 29) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 2, 29) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 30) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 4, 29) will update its states by RequestVote RPC from server(2, 30).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 30) updates its states by RequestVote RPC from server(2, 30).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 30) is asked to vote from server(2, 30).
+[Leader Election-sendRequestVote]            Server(Candidate, 2, 30) receives vote from server(4, 30), current votes is 2.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 45 => 46.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[46, 46].
+-------------- Reply(12) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(2754023928954478572).
+[Server-PutAppend]                           Server(3): Return result for command(2754023928954478572). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 y.
+===========command(2754023928954478572)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 y"]
+=============================
+[Clerk-Get]                                  Client(M3CrDTAlT9) issues a command(1593629579013524527): {0 1593629579013524527 13}.
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[46, 46].
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[46, 46].
+[#2B Start]                                  Server(Leader, 3, 27) appends log(47, {Get [0] 1593629579013524527 13}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 46 => 47.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 46 => 47.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 46 => 47.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[47, 47].
+-------------- Reply(13) -------------------
+[Server-Get]                                 Server(3): Reply  SUCCESS from raft for command(1593629579013524527).
+[Server-Get]                                 Server(3): Return result for command(1593629579013524527). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 y.
+===========command(1593629579013524527)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 y"]
+=============================
+[Clerk-Get]                                  Command(1593629579013524527) call by client(M3CrDTAlT9) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 y 
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(211759932020877073): {0 x 0 7 y Append 211759932020877073 14}.
+[#2B Start]                                  Server(Leader, 3, 27) appends log(48, {Append [0 x 0 7 y] 211759932020877073 14}).
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[47, 47].
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[47, 47].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 47 => 48.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 47 => 48.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 47 => 48.
+[#2B Make]                                   Server(Leader, 3, 27) applied logs[48, 48].
+-------------- Reply(14) -------------------
+[Server-PutAppend]                           Server(3): Reply SUCCESS from raft for command(211759932020877073).
+[Server-PutAppend]                           Server(3): Return result for command(211759932020877073). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 y.
+===========command(211759932020877073)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 y"]
+=============================
+[#2B Make]                                   Server(Follower, 1, 27) applied logs[48, 48].
+[#2B Make]                                   Server(Follower, 0, 27) applied logs[48, 48].
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(836226013263650632): {0 x 0 8 y Append 836226013263650632 15}.
+[#2B Start]                                  Server(Leader, 3, 27) appends log(49, {Append [0 x 0 8 y] 836226013263650632 15}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(0, 27) advances from 48 => 49.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 3, 27)'s matchIndex for Server(1, 27) advances from 48 => 49.
+[Make]                                       Server(Follower, 4, 30) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 4, 30) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 31) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Leader, 3, 27) will update its states by RequestVote RPC from server(4, 31).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 31) updates its states by RequestVote RPC from server(4, 31).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 31)'s logs  is newer than server(4)'s.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 2, 30) will update its states by RequestVote RPC from server(4, 31).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 27) will update its states by RequestVote RPC from server(4, 31).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 31) updates its states by RequestVote RPC from server(4, 31).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 31) updates its states by RequestVote RPC from server(4, 31).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 31)'s logs  is newer than server(4)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 31) is asked to vote from server(4, 31).
+[Leader Election-sendRequestVote]            Server(Candidate, 4, 31) receives vote from server(2, 31), current votes is 2.
+[Make]                                       Server(Follower, 0, 31) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 0, 31) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 32) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Candidate, 4, 31) will update its states by RequestVote RPC from server(0, 32).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 32) updates its states by RequestVote RPC from server(0, 32).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 32) is asked to vote from server(0, 32).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 31) will update its states by RequestVote RPC from server(0, 32).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 32) updates its states by RequestVote RPC from server(0, 32).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 32) is asked to vote from server(0, 32).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 31) will update its states by RequestVote RPC from server(0, 32).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 32) updates its states by RequestVote RPC from server(0, 32).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 32) is asked to vote from server(0, 32).
+[Leader Election-sendRequestVote]            Server(Candidate, 0, 32) receives vote from server(4, 32), current votes is 2.
+[Leader Election-sendRequestVote]            Server(Candidate, 0, 32) receives vote from server(2, 32), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 0, 32) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 0, 32) begins reinitialize nextIndex and matchIndex.
+[#2B Make]                                   Server(Follower, 2, 32) applied logs[38, 48].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(4, 32) advances from 0 => 49.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(2, 32) advances from 0 => 49.
+[#2B Make]                                   Server(Follower, 4, 32) applied logs[38, 48].
+[Make]                                       Server(Follower, 1, 27) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 1, 27) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 1, 28) begins broadcast RequestVote RPCs to all peers.
+[Server-PutAppend]                            Server(3) wait raft timeout for command(836226013263650632)!
+[Clerk-PutAppend]                            Server(3) reply error for command(836226013263650632): Request lost by raft node.
+[Clerk-Get]                                  Client(M3CrDTAlT9) sends a command(836226013263650632): {0 x 0 8 y Append 836226013263650632 15} by redirecting  to Server(4).
+[#2B Start]                                  Server(Leader, 0, 32) appends log(50, {Append [0 x 0 8 y] 836226013263650632 15}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(3, 32) advances from 49 => 50.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(4, 32) advances from 49 => 50.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(2, 32) advances from 49 => 50.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 48 => 50.
+[Server-HandleApplyMsg]                      Server(0) command(836226013263650632) exists in Map successCall!.
+-------------- Reply(15) -------------------
+[Server-PutAppend]                           Server(0): Reply SUCCESS from raft for command(836226013263650632).
+[Server-PutAppend]                           Server(0): Return result for command(836226013263650632). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 y.
+===========command(836226013263650632)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 y"]
+=============================
+[Clerk-Get]                                  Client(M3CrDTAlT9) issues a command(1872087094486681764): {0 1872087094486681764 16}.
+[Server-HandleApplyMsg]                      Server(4) command(836226013263650632) exists in Map successCall!.
+[Server-HandleApplyMsg]                      Server(2) command(836226013263650632) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 4, 32) applied logs[49, 50].
+[#2B Make]                                   Server(Follower, 2, 32) applied logs[49, 50].
+[#2B Make]                                   Server(Leader, 0, 32) applied logs[49, 50].
+[Server-HandleApplyMsg]                      Server(3) command(836226013263650632) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 3, 32) applied logs[49, 50].
+[#2B Start]                                  Server(Leader, 0, 32) appends log(51, {Get [0] 1872087094486681764 16}).
+[Append Entries-AppendEntriesHandler]        Server(Follower, 1, 32) update its states by AppendEntries RPC from server(0, 32).
+[Server-HandleApplyMsg]                      Server(1) command(836226013263650632) exists in Map successCall!.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(1, 32) advances from 0 => 51.
+[#2B Make]                                   Server(Follower, 1, 32) applied logs[49, 50].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(4, 32) advances from 50 => 51.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 50 => 51.
+[#2B Make]                                   Server(Leader, 0, 32) applied logs[51, 51].
+-------------- Reply(16) -------------------
+[Server-Get]                                 Server(0): Reply  SUCCESS from raft for command(1872087094486681764).
+[Server-Get]                                 Server(0): Return result for command(1872087094486681764). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 y.
+===========command(1872087094486681764)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 y"]
+=============================
+[Clerk-Get]                                  Command(1872087094486681764) call by client(M3CrDTAlT9) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 y 
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(2920619518075448746): {0 x 0 9 y Append 2920619518075448746 17}.
+[#2B Make]                                   Server(Follower, 1, 32) applied logs[51, 51].
+[#2B Start]                                  Server(Leader, 0, 32) appends log(52, {Append [0 x 0 9 y] 2920619518075448746 17}).
+[#2B Make]                                   Server(Follower, 4, 32) applied logs[51, 51].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(4, 32) advances from 51 => 52.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(1, 32) advances from 51 => 52.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 51 => 52.
+[#2B Make]                                   Server(Leader, 0, 32) applied logs[52, 52].
+-------------- Reply(17) -------------------
+[Server-PutAppend]                           Server(0): Reply SUCCESS from raft for command(2920619518075448746).
+[Server-PutAppend]                           Server(0): Return result for command(2920619518075448746). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 y.
+===========command(2920619518075448746)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 y"]
+=============================
+[Clerk-Get]                                  Client(M3CrDTAlT9) issues a command(1003582681215277379): {0 1003582681215277379 18}.
+[#2B Make]                                   Server(Follower, 1, 32) applied logs[52, 52].
+[#2B Make]                                   Server(Follower, 4, 32) applied logs[52, 52].
+[#2B Start]                                  Server(Leader, 0, 32) appends log(53, {Get [0] 1003582681215277379 18}).
+[Make]                                       Server(Follower, 2, 32) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 2, 32) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 33) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 32) will update its states by RequestVote RPC from server(2, 33).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 33) updates its states by RequestVote RPC from server(2, 33).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 33) is asked to vote from server(2, 33).
+[Leader Election-sendRequestVote]            Server(Candidate, 2, 33) receives vote from server(3, 33), current votes is 2.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(4, 32) advances from 52 => 53.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(1, 32) advances from 52 => 53.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 52 => 53.
+[#2B Make]                                   Server(Leader, 0, 32) applied logs[53, 53].
+-------------- Reply(18) -------------------
+[Server-Get]                                 Server(0): Reply  SUCCESS from raft for command(1003582681215277379).
+[Server-Get]                                 Server(0): Return result for command(1003582681215277379). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 y.
+===========command(1003582681215277379)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 y"]
+=============================
+[Clerk-Get]                                  Command(1003582681215277379) call by client(M3CrDTAlT9) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 y 
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(398905700957065033): {0 x 0 10 y Append 398905700957065033 19}.
+[#2B Make]                                   Server(Follower, 1, 32) applied logs[53, 53].
+[#2B Make]                                   Server(Follower, 4, 32) applied logs[53, 53].
+[#2B Start]                                  Server(Leader, 0, 32) appends log(54, {Append [0 x 0 10 y] 398905700957065033 19}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(1, 32) advances from 53 => 54.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(4, 32) advances from 53 => 54.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 53 => 54.
+[#2B Make]                                   Server(Leader, 0, 32) applied logs[54, 54].
+-------------- Reply(19) -------------------
+[Server-PutAppend]                           Server(0): Reply SUCCESS from raft for command(398905700957065033).
+[Server-PutAppend]                           Server(0): Return result for command(398905700957065033). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 yx 0 10 y.
+===========command(398905700957065033)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 yx 0 10 y"]
+=============================
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(1338436498146805245): {0 x 0 11 y Append 1338436498146805245 20}.
+[#2B Make]                                   Server(Follower, 4, 32) applied logs[54, 54].
+[#2B Start]                                  Server(Leader, 0, 32) appends log(55, {Append [0 x 0 11 y] 1338436498146805245 20}).
+[#2B Make]                                   Server(Follower, 1, 32) applied logs[54, 54].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(4, 32) advances from 54 => 55.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 32)'s matchIndex for Server(1, 32) advances from 54 => 55.
+[Make]                                       Server(Candidate, 2, 33) waits timeout.
+[Make]                                       Server(Candidate, 2, 33) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 34) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 33) will update its states by RequestVote RPC from server(2, 34).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 34) updates its states by RequestVote RPC from server(2, 34).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 34) is asked to vote from server(2, 34).
+[Leader Election-sendRequestVote]            Server(Candidate, 2, 34) receives vote from server(3, 34), current votes is 2.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 54 => 55.
+[#2B Make]                                   Server(Leader, 0, 32) applied logs[55, 55].
+-------------- Reply(20) -------------------
+[Server-PutAppend]                           Server(0): Reply SUCCESS from raft for command(1338436498146805245).
+[Server-PutAppend]                           Server(0): Return result for command(1338436498146805245). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 yx 0 10 yx 0 11 y.
+===========command(1338436498146805245)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 yx 0 10 yx 0 11 y"]
+=============================
+[Clerk-PutAppend]                            Client(M3CrDTAlT9) issues a command(1769213289216288722): {0 x 0 12 y Append 1769213289216288722 21}.
+[#2B Start]                                  Server(Leader, 0, 32) appends log(56, {Append [0 x 0 12 y] 1769213289216288722 21}).
+[#2B Make]                                   Server(Follower, 4, 32) applied logs[55, 55].
+[#2B Make]                                   Server(Follower, 1, 32) applied logs[55, 55].
+[Append Entries-sendAppendEntries]           Server(Follower, 0, 34) converts to follower by AppendEntries RPC reply from server(3, 34).
+[Make]                                       Server(Follower, 3, 34) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 3, 34) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 3, 35) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 32) will update its states by RequestVote RPC from server(3, 35).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 34) will update its states by RequestVote RPC from server(3, 35).
+[Leader Election-RequestVoteHandler]         Server(Candidate, 2, 34) will update its states by RequestVote RPC from server(3, 35).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 35) updates its states by RequestVote RPC from server(3, 35).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 35) updates its states by RequestVote RPC from server(3, 35).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 35) updates its states by RequestVote RPC from server(3, 35).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 35)'s logs  is newer than server(3)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 35)'s logs  is newer than server(3)'s.
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 35) is asked to vote from server(3, 35).
+[Leader Election-sendRequestVote]            Server(Candidate, 3, 35) receives vote from server(2, 35), current votes is 2.
+[Make]                                       Server(Follower, 4, 32) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 4, 32) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 33) begins broadcast RequestVote RPCs to all peers.
+[Make]                                       Server(Follower, 1, 35) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 1, 35) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 1, 36) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 35) will update its states by RequestVote RPC from server(1, 36).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 36) updates its states by RequestVote RPC from server(1, 36).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 36) is asked to vote from server(1, 36).
+[Leader Election-RequestVoteHandler]         Server(Candidate, 3, 35) will update its states by RequestVote RPC from server(1, 36).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 36) updates its states by RequestVote RPC from server(1, 36).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 36) is asked to vote from server(1, 36).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 35) will update its states by RequestVote RPC from server(1, 36).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 36) updates its states by RequestVote RPC from server(1, 36).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 36) is asked to vote from server(1, 36).
+[Leader Election-sendRequestVote]            Server(Candidate, 1, 36) receives vote from server(0, 36), current votes is 2.
+[Leader Election-sendRequestVote]            Server(Candidate, 1, 36) receives vote from server(3, 36), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 1, 36) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 1, 36) begins reinitialize nextIndex and matchIndex.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 36)'s matchIndex for Server(2, 36) advances from 0 => 56.
+[#2B Make]                                   Server(Follower, 2, 36) applied logs[51, 55].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 36)'s matchIndex for Server(3, 36) advances from 0 => 56.
+[#2B Make]                                   Server(Follower, 3, 36) applied logs[51, 55].
+[Server-PutAppend]                            Server(0) wait raft timeout for command(1769213289216288722)!
+[Clerk-PutAppend]                            Server(4) reply error for command(1769213289216288722): Request lost by raft node.
+[Clerk-Get]                                  Client(M3CrDTAlT9) sends a command(1769213289216288722): {0 x 0 12 y Append 1769213289216288722 21} by redirecting  to Server(0).
+[#2B Start]                                  Server(Leader, 1, 36) appends log(57, {Append [0 x 0 12 y] 1769213289216288722 21}).
+[Make]                                       Server(Candidate, 4, 33) waits timeout.
+[Make]                                       Server(Candidate, 4, 33) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 4, 34) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 36) rejects a (outdated) RequestVote RPC from server(4, 34).
+[Leader Election-RequestVoteHandler]         Server(Leader, 1, 36) rejects a (outdated) RequestVote RPC from server(4, 34).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 36) rejects a (outdated) RequestVote RPC from server(4, 34).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 36) rejects a (outdated) RequestVote RPC from server(4, 34).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 36)'s matchIndex for Server(2, 36) advances from 56 => 57.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 36)'s matchIndex for Server(0, 36) advances from 56 => 57.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 36)'s matchIndex for Server(3, 36) advances from 56 => 57.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 55 => 57.
+[Server-HandleApplyMsg]                      Server(1) command(1769213289216288722) exists in Map successCall!.
+-------------- Reply(21) -------------------
+[Server-PutAppend]                           Server(1): Reply SUCCESS from raft for command(1769213289216288722).
+[Server-PutAppend]                           Server(1): Return result for command(1769213289216288722). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 yx 0 10 yx 0 11 yx 0 12 y.
+===========command(1769213289216288722)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 yx 0 10 yx 0 11 yx 0 12 y"]
+=============================
+[#2B Make]                                   Server(Leader, 1, 36) applied logs[56, 57].
+[Server-HandleApplyMsg]                      Server(0) command(1769213289216288722) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 0, 36) applied logs[56, 57].
+[Server-HandleApplyMsg]                      Server(2) command(1769213289216288722) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 2, 36) applied logs[56, 57].
+[Server-HandleApplyMsg]                      Server(4) command(1769213289216288722) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 4, 36) applied logs[56, 57].
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 36)'s matchIndex for Server(4, 36) advances from 0 => 57.
+[Server-HandleApplyMsg]                      Server(3) command(1769213289216288722) exists in Map successCall!.
+[#2B Make]                                   Server(Follower, 3, 36) applied logs[56, 57].
+[Clerk-Get]                                  Client(H2LYd-Fc4i) issues a command(1315643851052845537): {0 1315643851052845537 3}.
+[Server-Get]                                 Client choose Server(3), wrong!
+[Clerk-Get]                                  Server(4) reply error for command(1315643851052845537): Request host is not the leader.
+[Clerk-Get]                                  Client(H2LYd-Fc4i) sends a command(1315643851052845537): {0 1315643851052845537 3} by redirecting  to Server(0).
+[Server-Get]                                 Client choose Server(0), wrong!
+[Clerk-Get]                                  Server(0) reply error for command(1315643851052845537): Request host is not the leader.
+[Clerk-Get]                                  Client(H2LYd-Fc4i) sends a command(1315643851052845537): {0 1315643851052845537 3} by redirecting  to Server(1).
+[#2B Start]                                  Server(Leader, 1, 36) appends log(58, {Get [0] 1315643851052845537 3}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 36)'s matchIndex for Server(0, 36) advances from 57 => 58.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 36)'s matchIndex for Server(3, 36) advances from 57 => 58.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 36)'s matchIndex for Server(4, 36) advances from 57 => 58.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 36)'s matchIndex for Server(2, 36) advances from 57 => 58.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 57 => 58.
+[#2B Make]                                   Server(Follower, 3, 36) applied logs[58, 58].
+[#2B Make]                                   Server(Follower, 2, 36) applied logs[58, 58].
+[#2B Make]                                   Server(Follower, 4, 36) applied logs[58, 58].
+[#2B Make]                                   Server(Leader, 1, 36) applied logs[58, 58].
+[#2B Make]                                   Server(Follower, 0, 36) applied logs[58, 58].
+-------------- Reply(3) -------------------
+[Server-Get]                                 Server(1): Reply  SUCCESS from raft for command(1315643851052845537).
+[Server-Get]                                 Server(1): Return result for command(1315643851052845537). result: key=0, value=x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 yx 0 10 yx 0 11 yx 0 12 y.
+===========command(1315643851052845537)==================
+map["0":"x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 yx 0 10 yx 0 11 yx 0 12 y"]
+=============================
+[Clerk-Get]                                  Command(1315643851052845537) call by client(H2LYd-Fc4i) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 yx 0 6 yx 0 7 yx 0 8 yx 0 9 yx 0 10 yx 0 11 yx 0 12 y 
+  ... Passed --  23.8  5  1089   53
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+PASS
+ok  	kvraft	23.782s

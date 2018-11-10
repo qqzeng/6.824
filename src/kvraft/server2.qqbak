@@ -1,0 +1,292 @@
+package raftkv
+
+import (
+	"fmt"
+	"labgob"
+	"labrpc"
+	"log"
+	"raft"
+	"sync"
+	"sync/atomic"
+	"time"
+)
+
+const Debug = 0
+
+const (
+	OP_PUT    = "Put"
+	OP_APPEND = "Append"
+	OP_GET    = "Get"
+
+	SERVER_WAIT_INTERVAL = 1000
+	SERVER_CHAN_SIZE     = 1
+)
+
+func DPrintf(format string, a ...interface{}) (n int, err error) {
+	if Debug > 0 {
+		log.Printf(format, a...)
+	}
+	return
+}
+
+// Field names must start with capital letters,
+// otherwise RPC will break.
+type Op struct {
+	// Your definitions here.
+	Opcode       string   // operation type.
+	Operand      []string // operation data.
+	SerialNumber int64    // uniquely identify client operations to ensure execute each one just once.
+}
+
+type KVServer struct {
+	mu      sync.Mutex
+	me      int
+	rf      *raft.Raft
+	applyCh chan raft.ApplyMsg
+
+	maxraftstate int // snapshot if log grows this big
+
+	// Your definitions here.
+	overCall         map[int64]chan bool
+	overCallMapMutex sync.RWMutex
+	executingCmd     int64 // this executing command from client
+}
+
+func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
+	// Your code here.
+	operand := []string{args.Key}
+	op := Op{
+		Opcode:       OP_GET,
+		Operand:      operand,
+		SerialNumber: args.SerialNumber,
+	}
+	_, _, ok := kv.rf.Start(op)
+	kv.executingCmd = args.SerialNumber
+	if !ok {
+		fmt.Printf(DEBUG_PREFIX_FORMAT+"Client choose Server(%v), wrong!\n", "[Server-Get]", kv.me)
+		reply.WrongLeader = true
+		reply.Err = "Request host is not the leader."
+		kv.executingCmd = -1
+		return
+	}
+	exit := int32(0)
+	var v chan bool
+	var isok bool
+	go func(exit int32) {
+		select {
+		case <-time.After(time.Duration(SERVER_WAIT_INTERVAL) * time.Millisecond):
+			atomic.StoreInt32(&exit, 1)
+			fmt.Printf(DEBUG_PREFIX_FORMAT+" Server(%v) wait raft timeout for command(%v)!\n", "[Server-Get]", kv.me, args.SerialNumber)
+		}
+	}(exit)
+	for atomic.LoadInt32(&exit) == 0 {
+		kv.overCallMapMutex.RLock()
+		v, isok = kv.overCall[args.SerialNumber]
+		if isok {
+			atomic.StoreInt32(&exit, 1)
+		}
+		kv.overCallMapMutex.RUnlock()
+	}
+	if v != nil {
+		<-v
+		reply.WrongLeader = false
+		reply.Err = ""
+		kv.executingCmd = -1
+	} else {
+		reply.WrongLeader = true
+		kv.executingCmd = -1
+		reply.Err = "Request lost by raft node."
+		return
+	}
+	fmt.Printf(DEBUG_PREFIX_FORMAT+"Server(%v): Reply from raft indicates SUCCESS for command(%v).\n", "[Server-Get]", kv.me, args.SerialNumber)
+	fmt.Printf(DEBUG_PREFIX_FORMAT+"Server(%v): Begin to ready request result for command(%v).\n", "[Server-Get]", kv.me, args.SerialNumber)
+	// copy log entries.
+	kv.rf.GetMutex().Lock()
+	logs := kv.rf.GetLogs()
+	val := ""
+	for i := 0; i < len(logs); i++ {
+		cmd := logs[i].Command
+		if v, ok := cmd.(Op); ok {
+			if len(v.Operand) == 1 {
+				continue
+			}
+			if v.Operand[0] == args.Key {
+				switch v.Opcode {
+				case OP_APPEND:
+					val += v.Operand[1]
+					fmt.Printf("===Server(%v)==Append[%v]====key: %v, val:%v =========\n", kv.me, i, v.Operand[0], val)
+				case OP_PUT:
+					val = v.Operand[1]
+					fmt.Printf("===Server(%v)==Put[%v]====key: %v, val:%v =========\n", kv.me, i, v.Operand[0], val)
+				}
+			}
+		}
+	}
+	fmt.Printf(DEBUG_PREFIX_FORMAT+"Server(%v): End to ready request result for command(%v). result: key=%v, value=%v.\n", "[Server-Get]", kv.me, args.SerialNumber, args.Key, val)
+	reply.Value = val
+	reply.Err = ""
+	kv.rf.GetMutex().Unlock()
+	return
+}
+
+func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
+	// Your code here.
+	operand := []string{args.Key, args.Value}
+	op := Op{
+		Opcode:       args.Op,
+		Operand:      operand,
+		SerialNumber: args.SerialNumber,
+	}
+	// whether need to check it is identical to the excuting one.
+	kv.mu.Lock()
+	executing := false
+	if kv.executingCmd != -1 && kv.executingCmd == args.SerialNumber {
+		fmt.Printf(DEBUG_PREFIX_FORMAT+"Server(%v): Request command(%v) executing!\n", "[Server-Get]", kv.me, args.SerialNumber)
+		reply.WrongLeader = false
+		reply.Err = "Request executing!"
+		executing = true
+	}
+	kv.mu.Unlock()
+	if executing {
+		return
+	}
+	// check duplicate comand call.
+	kv.overCallMapMutex.Lock()
+	_, exist := kv.overCall[args.SerialNumber]
+	if exist {
+		fmt.Printf(DEBUG_PREFIX_FORMAT+"Server(%v): Request command(%v) executed!\n", "[Server-Get]", kv.me, args.SerialNumber)
+		reply.WrongLeader = false
+		reply.Err = "Request executed!"
+	}
+	kv.overCallMapMutex.Unlock()
+	if exist {
+		return
+	}
+	_, _, ok := kv.rf.Start(op)
+	kv.executingCmd = args.SerialNumber
+	if !ok {
+		fmt.Printf(DEBUG_PREFIX_FORMAT+"Client choose Server(%v), wrong!\n", "[Server-Get]", kv.me)
+		reply.WrongLeader = true
+		reply.Err = "Request host is not the leader."
+		kv.executingCmd = -1
+		return
+	}
+	exit := int32(0)
+	var v chan bool
+	var isok bool
+	go func(exit int32) {
+		select {
+		case <-time.After(time.Duration(SERVER_WAIT_INTERVAL) * time.Millisecond):
+			atomic.StoreInt32(&exit, 1)
+			fmt.Printf(DEBUG_PREFIX_FORMAT+" Server(%v) wait raft timeout for command(%v)!\n", "[Server-Get]", kv.me, args.SerialNumber)
+		}
+	}(exit)
+	for atomic.LoadInt32(&exit) == 0 {
+		kv.overCallMapMutex.RLock()
+		v, isok = kv.overCall[args.SerialNumber]
+		if isok {
+			atomic.StoreInt32(&exit, 1)
+		}
+		kv.overCallMapMutex.RUnlock()
+	}
+	if v != nil {
+		<-v
+		reply.WrongLeader = false
+		reply.Err = ""
+	} else {
+		reply.WrongLeader = true
+		reply.Err = "Request lost by raft node."
+	}
+	kv.executingCmd = -1
+	return
+}
+
+// check whether leader change occur
+// leaderChange := false
+// if t != kv.rf.GetTerm() {
+//  leaderChange = true
+// }
+// if leaderChange && !exit {
+//  fmt.Printf(DEBUG_PREFIX_FORMAT+"Server(%v): Raft leader change from term %v => %v when call command(%v)!\n", "[Server-Get]", kv.me, t, kv.rf.GetTerm(), args.SerialNumber)
+//  reply.WrongLeader = true
+//  reply.Err = "Raft leader change."
+//  kv.executingCmd = -1
+//  return
+// }
+
+func (kv *KVServer) HandleApplyMsg() {
+	for {
+		// var err_msg Err = ""
+		select {
+		case m := <-kv.applyCh:
+			if m.CommandValid == false {
+				// err_msg = Err(fmt.Sprintf(DEBUG_PREFIX_FORMAT+"command %v invalid.\n", "[Server-HandleApplyMsg]", m.Command))
+				fmt.Printf(DEBUG_PREFIX_FORMAT+"Code should not ======1===== reach here.\n", "[Server-HandleApplyMsg]")
+			} else if v, ok := (m.Command).(Op); ok {
+				over := make(chan bool, SERVER_CHAN_SIZE)
+				// over := make(chan bool)
+				over <- true
+				kv.overCallMapMutex.Lock()
+				kv.overCall[v.SerialNumber] = over
+				kv.overCallMapMutex.Unlock()
+				// fmt.Printf("===================3=======args.SerialNumber=%v======\n", v.SerialNumber)
+			} else {
+				fmt.Printf(DEBUG_PREFIX_FORMAT+"Code should not ======2===== reach here.\n", "[Server-HandleApplyMsg]")
+				// err_msg = Err(fmt.Sprintf(DEBUG_PREFIX_FORMAT+"committed command %v is not an Op.\n", "[Server-HandleApplyMsg]", m.Command))
+			}
+		}
+	}
+}
+
+//
+// the tester calls Kill() when a KVServer instance won't
+// be needed again. you are not required to do anything
+// in Kill(), but it might be convenient to (for example)
+// turn off debug output from this instance.
+//
+func (kv *KVServer) Kill() {
+	kv.rf.Kill()
+	// Your code here, if desired.
+	fmt.Sprintf(DEBUG_PREFIX_FORMAT+"Kv Server(%v) is exiting now.\n", "[Server-Kill]", kv.me)
+}
+
+//
+// servers[] contains the ports of the set of
+// servers that will cooperate via Raft to
+// form the fault-tolerant key/value service.
+// me is the index of the current server in servers[].
+// the k/v server should store snapshots through the underlying Raft
+// implementation, which should call persister.SaveStateAndSnapshot() to
+// atomically save the Raft state along with the snapshot.
+// the k/v server should snapshot when Raft's saved state exceeds maxraftstate bytes,
+// in order to allow Raft to garbage-collect its log. if maxraftstate is -1,
+// you don't need to snapshot.
+// StartKVServer() must return quickly, so it should start goroutines
+// for any long-running work.
+//
+func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persister, maxraftstate int) *KVServer {
+	// call labgob.Register on structures you want
+	// Go's RPC library to marshall/unmarshall.
+	labgob.Register(Op{})
+
+	kv := new(KVServer)
+	kv.me = me
+	kv.maxraftstate = maxraftstate
+
+	fmt.Sprintf(DEBUG_PREFIX_FORMAT+"Kv Server(%v) is starting now.\n", "[Server-StartKVServer]", kv.me)
+	// You may need initialization code here.
+	kv.overCall = make(map[int64]chan bool)
+	kv.overCallMapMutex = sync.RWMutex{}
+	kv.executingCmd = -1
+
+	kv.applyCh = make(chan raft.ApplyMsg)
+	kv.rf = raft.Make(servers, me, persister, kv.applyCh)
+
+	// You may need initialization code here.
+	// a goroutine to handle apply message by channel.
+	go kv.HandleApplyMsg()
+
+	// a goroutine to handle stale results of apply message.
+
+	return kv
+}

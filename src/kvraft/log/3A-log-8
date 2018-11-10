@@ -1,0 +1,985 @@
+[Make]                                       Raft node 0 created server(Follower, 0, 0).
+[Make]                                       Raft node 1 created server(Follower, 1, 0).
+[Make]                                       Raft node 2 created server(Follower, 2, 0).
+[Make]                                       Raft node 3 created server(Follower, 3, 0).
+[Make]                                       Raft node 4 created server(Follower, 4, 0).
+Test: restarts, one client (3A) ...
+[Clerk-MakeClerk]                            Client(EVuxF2qbDD) create...
+[Clerk-MakeClerk]                            Client(5h0LrOu9ZS) create...
+[Clerk-PutAppend]                            Client(5h0LrOu9ZS) issues a command(2232005506493916273): {0  Put 2232005506493916273}.
+[Server-Get]                                 Client choose Server(4), wrong!
+[Clerk-PutAppend]                            Server(0) reply error for command(2232005506493916273): Request host is not the leader.
+[Clerk-Get]                                  Client(5h0LrOu9ZS) sends a command(2232005506493916273): {0  Put 2232005506493916273} by redirecting  to Server(1).
+[Server-Get]                                 Client choose Server(0), wrong!
+[Clerk-PutAppend]                            Server(1) reply error for command(2232005506493916273): Request host is not the leader.
+[Clerk-Get]                                  Client(5h0LrOu9ZS) sends a command(2232005506493916273): {0  Put 2232005506493916273} by redirecting  to Server(2).
+[Server-Get]                                 Client choose Server(1), wrong!
+[Clerk-PutAppend]                            Server(2) reply error for command(2232005506493916273): Request host is not the leader.
+[Clerk-Get]                                  Client(5h0LrOu9ZS) sends a command(2232005506493916273): {0  Put 2232005506493916273} by redirecting  to Server(3).
+[Server-Get]                                 Client choose Server(2), wrong!
+[Clerk-PutAppend]                            Server(3) reply error for command(2232005506493916273): Request host is not the leader.
+[Clerk-Get]                                  Client(5h0LrOu9ZS) sends a command(2232005506493916273): {0  Put 2232005506493916273} by redirecting  to Server(4).
+[Make]                                       Server(Follower, 2, 0) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 2, 0) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 2, 1) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 0) will update its states by RequestVote RPC from server(2, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 1) updates its states by RequestVote RPC from server(2, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 0) will update its states by RequestVote RPC from server(2, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 1) updates its states by RequestVote RPC from server(2, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 0) will update its states by RequestVote RPC from server(2, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 1) updates its states by RequestVote RPC from server(2, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 0) will update its states by RequestVote RPC from server(2, 1).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 1) updates its states by RequestVote RPC from server(2, 1).
+[Leader Election-sendRequestVote]            Server(Candidate, 2, 1) receives vote from server(4, 1), current votes is 2.
+[Leader Election-sendRequestVote]            Server(Candidate, 2, 1) receives vote from server(1, 1), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 2, 1) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 2, 1) begins reinitialize nextIndex and matchIndex.
+[Server-Get]                                 Client choose Server(3), wrong!
+[Clerk-PutAppend]                            Server(4) reply error for command(2232005506493916273): Request host is not the leader.
+[Clerk-Get]                                  Client(5h0LrOu9ZS) sends a command(2232005506493916273): {0  Put 2232005506493916273} by redirecting  to Server(0).
+[Server-Get]                                 Client choose Server(4), wrong!
+[Clerk-PutAppend]                            Server(0) reply error for command(2232005506493916273): Request host is not the leader.
+[Clerk-Get]                                  Client(5h0LrOu9ZS) sends a command(2232005506493916273): {0  Put 2232005506493916273} by redirecting  to Server(1).
+[Server-Get]                                 Client choose Server(0), wrong!
+[Clerk-PutAppend]                            Server(1) reply error for command(2232005506493916273): Request host is not the leader.
+[Clerk-Get]                                  Client(5h0LrOu9ZS) sends a command(2232005506493916273): {0  Put 2232005506493916273} by redirecting  to Server(2).
+[Server-Get]                                 Client choose Server(1), wrong!
+[Clerk-PutAppend]                            Server(2) reply error for command(2232005506493916273): Request host is not the leader.
+[Clerk-Get]                                  Client(5h0LrOu9ZS) sends a command(2232005506493916273): {0  Put 2232005506493916273} by redirecting  to Server(3).
+[#2B Start]                                  Server(Leader, 2, 1) appends log(1, {Put [0 ] 2232005506493916273}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 0 => 1.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 0 => 1.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 0 => 1.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 0 => 1.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 0 => 1.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[1, 1].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[1, 1].
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[1, 1].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[1, 1].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[1, 1].
+[Clerk-PutAppend]                            Command(2232005506493916273) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-PutAppend]                            Client(5h0LrOu9ZS) issues a command(3334388763893134899): {0 x 0 0 y Append 3334388763893134899}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(2, {Append [0 x 0 0 y] 3334388763893134899}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 1 => 2.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 1 => 2.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 1 => 2.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 1 => 2.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 1 => 2.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[2, 2].
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[2, 2].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[2, 2].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[2, 2].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[2, 2].
+[Clerk-PutAppend]                            Command(3334388763893134899) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-PutAppend]                            Client(5h0LrOu9ZS) issues a command(3848992597784442742): {0 x 0 1 y Append 3848992597784442742}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(3, {Append [0 x 0 1 y] 3848992597784442742}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 2 => 3.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 2 => 3.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 2 => 3.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 2 => 3.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 2 => 3.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[3, 3].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[3, 3].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[3, 3].
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[3, 3].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[3, 3].
+[Clerk-PutAppend]                            Command(3848992597784442742) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-PutAppend]                            Client(5h0LrOu9ZS) issues a command(771640838127258857): {0 x 0 2 y Append 771640838127258857}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(4, {Append [0 x 0 2 y] 771640838127258857}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 3 => 4.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 3 => 4.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 3 => 4.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 3 => 4.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 3 => 4.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[4, 4].
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[4, 4].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[4, 4].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[4, 4].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[4, 4].
+[Clerk-PutAppend]                            Command(771640838127258857) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-PutAppend]                            Client(5h0LrOu9ZS) issues a command(3833958919040985479): {0 x 0 3 y Append 3833958919040985479}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(5, {Append [0 x 0 3 y] 3833958919040985479}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 4 => 5.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 4 => 5.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 4 => 5.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 4 => 5.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 4 => 5.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[5, 5].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[5, 5].
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[5, 5].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[5, 5].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[5, 5].
+[Clerk-PutAppend]                            Command(3833958919040985479) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-Get]                                  Client(5h0LrOu9ZS) issues a command(2496409302021475508): {0 2496409302021475508}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(6, {Get [0] 2496409302021475508}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 5 => 6.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 5 => 6.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 5 => 6.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 5 => 6.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 5 => 6.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[6, 6].
+[Server-Get]                                 Server(2): Reply from raft indicates SUCCESS for command(2496409302021475508).
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[6, 6].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[6, 6].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[6, 6].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[6, 6].
+=================i=1===============
+[Clerk-Get]                                  Command(2496409302021475508) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-Get]                                  Command(2496409302021475508) call by client(5h0LrOu9ZS) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 y 
+[Clerk-PutAppend]                            Client(5h0LrOu9ZS) issues a command(3742794521433636899): {0 x 0 4 y Append 3742794521433636899}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(7, {Append [0 x 0 4 y] 3742794521433636899}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 6 => 7.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 6 => 7.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 6 => 7.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 6 => 7.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 6 => 7.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[7, 7].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[7, 7].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[7, 7].
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[7, 7].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[7, 7].
+[Clerk-PutAppend]                            Command(3742794521433636899) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-Get]                                  Client(5h0LrOu9ZS) issues a command(3370904354749343873): {0 3370904354749343873}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(8, {Get [0] 3370904354749343873}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 7 => 8.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 7 => 8.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 7 => 8.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 7 => 8.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 7 => 8.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[8, 8].
+[Server-Get]                                 Server(2): Reply from raft indicates SUCCESS for command(3370904354749343873).
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[8, 8].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[8, 8].
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[8, 8].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[8, 8].
+=================i=1===============
+[Clerk-Get]                                  Command(3370904354749343873) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-Get]                                  Command(3370904354749343873) call by client(5h0LrOu9ZS) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-Get]                                  Client(5h0LrOu9ZS) issues a command(646855842161635849): {0 646855842161635849}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(9, {Get [0] 646855842161635849}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 8 => 9.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 8 => 9.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 8 => 9.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 8 => 9.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 8 => 9.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[9, 9].
+[Server-Get]                                 Server(2): Reply from raft indicates SUCCESS for command(646855842161635849).
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[9, 9].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[9, 9].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[9, 9].
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[9, 9].
+=================i=1===============
+[Clerk-Get]                                  Command(646855842161635849) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-Get]                                  Command(646855842161635849) call by client(5h0LrOu9ZS) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-Get]                                  Client(5h0LrOu9ZS) issues a command(62390568561229197): {0 62390568561229197}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(10, {Get [0] 62390568561229197}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 9 => 10.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 9 => 10.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 9 => 10.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 9 => 10.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 9 => 10.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[10, 10].
+[Server-Get]                                 Server(2): Reply from raft indicates SUCCESS for command(62390568561229197).
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[10, 10].
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[10, 10].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[10, 10].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[10, 10].
+=================i=1===============
+[Clerk-Get]                                  Command(62390568561229197) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-Get]                                  Command(62390568561229197) call by client(5h0LrOu9ZS) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-Get]                                  Client(5h0LrOu9ZS) issues a command(3742373277310892036): {0 3742373277310892036}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(11, {Get [0] 3742373277310892036}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 10 => 11.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 10 => 11.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 10 => 11.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 10 => 11.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 10 => 11.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[11, 11].
+[Server-Get]                                 Server(2): Reply from raft indicates SUCCESS for command(3742373277310892036).
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[11, 11].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[11, 11].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[11, 11].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[11, 11].
+=================i=1===============
+[Clerk-Get]                                  Command(3742373277310892036) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-Get]                                  Command(3742373277310892036) call by client(5h0LrOu9ZS) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-Get]                                  Client(5h0LrOu9ZS) issues a command(4562620218666304866): {0 4562620218666304866}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(12, {Get [0] 4562620218666304866}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 11 => 12.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 11 => 12.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 11 => 12.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 11 => 12.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 11 => 12.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[12, 12].
+[Server-Get]                                 Server(2): Reply from raft indicates SUCCESS for command(4562620218666304866).
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[12, 12].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[12, 12].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[12, 12].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[12, 12].
+=================i=1===============
+[Clerk-Get]                                  Command(4562620218666304866) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-Get]                                  Command(4562620218666304866) call by client(5h0LrOu9ZS) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-Get]                                  Client(5h0LrOu9ZS) issues a command(3097286830492889193): {0 3097286830492889193}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(13, {Get [0] 3097286830492889193}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 12 => 13.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 12 => 13.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 12 => 13.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 12 => 13.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 12 => 13.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[13, 13].
+[Server-Get]                                 Server(2): Reply from raft indicates SUCCESS for command(3097286830492889193).
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[13, 13].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[13, 13].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[13, 13].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[13, 13].
+=================i=1===============
+[Clerk-Get]                                  Command(3097286830492889193) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Clerk-Get]                                  Command(3097286830492889193) call by client(5h0LrOu9ZS) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-PutAppend]                            Client(5h0LrOu9ZS) issues a command(280353452069647362): {0 x 0 5 y Append 280353452069647362}.
+[#2B Start]                                  Server(Leader, 2, 1) appends log(14, {Append [0 x 0 5 y] 280353452069647362}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(3, 1) advances from 13 => 14.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(1, 1) advances from 13 => 14.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(4, 1) advances from 13 => 14.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 2, 1)'s matchIndex for Server(0, 1) advances from 13 => 14.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 13 => 14.
+[#2B Make]                                   Server(Leader, 2, 1) applied logs[14, 14].
+[#2B Make]                                   Server(Follower, 1, 1) applied logs[14, 14].
+[#2B Make]                                   Server(Follower, 3, 1) applied logs[14, 14].
+[#2B Make]                                   Server(Follower, 0, 1) applied logs[14, 14].
+[#2B Make]                                   Server(Follower, 4, 1) applied logs[14, 14].
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Make]                                       Have Server(Leader, 2, 1) exit now...
+[Clerk-PutAppend]                            Command(280353452069647362) call by client(5h0LrOu9ZS) replys success from Server(3).
+[Make]                                       Server(Follower, 4, 1) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 4, 1) exit now...
+[Make]                                       Server(Follower, 1, 1) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 1, 1) exit now...
+[Make]                                       Server(Follower, 0, 1) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 0, 1) exit now...
+[Make]                                       Server(Follower, 3, 1) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 3, 1) exit now...
+[Make]                                       Raft node 0 created server(Follower, 0, 0).
+[Make]                                       Raft node 1 created server(Follower, 1, 0).
+[Make]                                       Raft node 2 created server(Follower, 2, 0).
+[Make]                                       Raft node 3 created server(Follower, 3, 0).
+[Make]                                       Raft node 4 created server(Follower, 4, 0).
+[Clerk-Get]                                  Client(EVuxF2qbDD) issues a command(384672615088929934): {0 384672615088929934}.
+[Server-Get]                                 Client choose Server(1), wrong!
+[Clerk-Get]                                  Server(0) reply error for command(384672615088929934): Request host is not the leader.
+[Clerk-Get]                                  Client(EVuxF2qbDD) sends a command(384672615088929934): {0 384672615088929934} by redirecting  to Server(1).
+[Server-Get]                                 Client choose Server(3), wrong!
+[Clerk-Get]                                  Server(1) reply error for command(384672615088929934): Request host is not the leader.
+[Clerk-Get]                                  Client(EVuxF2qbDD) sends a command(384672615088929934): {0 384672615088929934} by redirecting  to Server(2).
+[Server-Get]                                 Client choose Server(0), wrong!
+[Clerk-Get]                                  Server(2) reply error for command(384672615088929934): Request host is not the leader.
+[Clerk-Get]                                  Client(EVuxF2qbDD) sends a command(384672615088929934): {0 384672615088929934} by redirecting  to Server(3).
+[Server-Get]                                 Client choose Server(2), wrong!
+[Clerk-Get]                                  Server(3) reply error for command(384672615088929934): Request host is not the leader.
+[Clerk-Get]                                  Client(EVuxF2qbDD) sends a command(384672615088929934): {0 384672615088929934} by redirecting  to Server(4).
+[Server-Get]                                 Client choose Server(4), wrong!
+[Clerk-Get]                                  Server(4) reply error for command(384672615088929934): Request host is not the leader.
+[Clerk-Get]                                  Client(EVuxF2qbDD) sends a command(384672615088929934): {0 384672615088929934} by redirecting  to Server(0).
+[Make]                                       Server(Follower, 0, 1) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 0, 1) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 0, 2) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 1) will update its states by RequestVote RPC from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 2) updates its states by RequestVote RPC from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 2) is asked to vote from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 1) will update its states by RequestVote RPC from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 2) updates its states by RequestVote RPC from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 2) is asked to vote from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 1) will update its states by RequestVote RPC from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 1) will update its states by RequestVote RPC from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 2) updates its states by RequestVote RPC from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 2) updates its states by RequestVote RPC from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 1, 2) is asked to vote from server(0, 2).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 2) is asked to vote from server(0, 2).
+[Leader Election-sendRequestVote]            Server(Candidate, 0, 2) receives vote from server(2, 2), current votes is 2.
+[Leader Election-sendRequestVote]            Server(Candidate, 0, 2) receives vote from server(3, 2), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 0, 2) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 0, 2) begins reinitialize nextIndex and matchIndex.
+[Server-Get]                                 Client choose Server(1), wrong!
+[Clerk-Get]                                  Server(0) reply error for command(384672615088929934): Request host is not the leader.
+[Clerk-Get]                                  Client(EVuxF2qbDD) sends a command(384672615088929934): {0 384672615088929934} by redirecting  to Server(1).
+[Server-Get]                                 Client choose Server(3), wrong!
+[Clerk-Get]                                  Server(1) reply error for command(384672615088929934): Request host is not the leader.
+[Clerk-Get]                                  Client(EVuxF2qbDD) sends a command(384672615088929934): {0 384672615088929934} by redirecting  to Server(2).
+[#2B Start]                                  Server(Leader, 0, 2) appends log(15, {Get [0] 384672615088929934}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 14 => 15.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 14 => 15.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 14 => 15.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 14 => 15.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 0 => 15.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[1, 15].
+[Server-Get]                                 Server(0): Reply from raft indicates SUCCESS for command(384672615088929934).
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[1, 15].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[1, 15].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[1, 15].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[1, 15].
+=================i=8===============
+[Clerk-Get]                                  Command(384672615088929934) call by client(EVuxF2qbDD) replys success from Server(2).
+[Clerk-Get]                                  Command(384672615088929934) call by client(EVuxF2qbDD) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y 
+[Clerk-MakeClerk]                            Client(e4vYe-FMoz) create...
+[Clerk-PutAppend]                            Client(e4vYe-FMoz) issues a command(3824718950918748273): {0  Put 3824718950918748273}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(16, {Put [0 ] 3824718950918748273}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 15 => 16.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 15 => 16.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 15 => 16.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 15 => 16.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 15 => 16.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[16, 16].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[16, 16].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[16, 16].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[16, 16].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[16, 16].
+[Clerk-PutAppend]                            Command(3824718950918748273) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Client(e4vYe-FMoz) issues a command(3154343757386153818): {0 3154343757386153818}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(17, {Get [0] 3154343757386153818}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 16 => 17.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 16 => 17.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 16 => 17.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 16 => 17.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 16 => 17.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[17, 17].
+[Server-Get]                                 Server(0): Reply from raft indicates SUCCESS for command(3154343757386153818).
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[17, 17].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[17, 17].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[17, 17].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[17, 17].
+=================i=1===============
+[Clerk-Get]                                  Command(3154343757386153818) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Command(3154343757386153818) call by client(e4vYe-FMoz) result:  
+[Clerk-PutAppend]                            Client(e4vYe-FMoz) issues a command(935978760540242624): {0 x 0 0 y Append 935978760540242624}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(18, {Append [0 x 0 0 y] 935978760540242624}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 17 => 18.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 17 => 18.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 17 => 18.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 17 => 18.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 17 => 18.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[18, 18].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[18, 18].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[18, 18].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[18, 18].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[18, 18].
+[Clerk-PutAppend]                            Command(935978760540242624) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Client(e4vYe-FMoz) issues a command(22859593412377207): {0 22859593412377207}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(19, {Get [0] 22859593412377207}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 18 => 19.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 18 => 19.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 18 => 19.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 18 => 19.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 18 => 19.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[19, 19].
+[Server-Get]                                 Server(0): Reply from raft indicates SUCCESS for command(22859593412377207).
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[19, 19].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[19, 19].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[19, 19].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[19, 19].
+=================i=1===============
+[Clerk-Get]                                  Command(22859593412377207) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Command(22859593412377207) call by client(e4vYe-FMoz) result: x 0 0 y 
+[Clerk-Get]                                  Client(e4vYe-FMoz) issues a command(1299073128165415656): {0 1299073128165415656}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(20, {Get [0] 1299073128165415656}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 19 => 20.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 19 => 20.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 19 => 20.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 19 => 20.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 19 => 20.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[20, 20].
+[Server-Get]                                 Server(0): Reply from raft indicates SUCCESS for command(1299073128165415656).
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[20, 20].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[20, 20].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[20, 20].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[20, 20].
+=================i=1===============
+[Clerk-Get]                                  Command(1299073128165415656) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Command(1299073128165415656) call by client(e4vYe-FMoz) result: x 0 0 y 
+[Clerk-PutAppend]                            Client(e4vYe-FMoz) issues a command(2558401416420221359): {0 x 0 1 y Append 2558401416420221359}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(21, {Append [0 x 0 1 y] 2558401416420221359}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 20 => 21.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 20 => 21.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 20 => 21.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 20 => 21.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 20 => 21.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[21, 21].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[21, 21].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[21, 21].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[21, 21].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[21, 21].
+[Clerk-PutAppend]                            Command(2558401416420221359) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Client(e4vYe-FMoz) issues a command(1941536139915236239): {0 1941536139915236239}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(22, {Get [0] 1941536139915236239}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 21 => 22.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 21 => 22.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 21 => 22.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 21 => 22.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 21 => 22.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[22, 22].
+[Server-Get]                                 Server(0): Reply from raft indicates SUCCESS for command(1941536139915236239).
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[22, 22].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[22, 22].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[22, 22].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[22, 22].
+=================i=1===============
+[Clerk-Get]                                  Command(1941536139915236239) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Command(1941536139915236239) call by client(e4vYe-FMoz) result: x 0 0 yx 0 1 y 
+[Clerk-PutAppend]                            Client(e4vYe-FMoz) issues a command(3314624803941106353): {0 x 0 2 y Append 3314624803941106353}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(23, {Append [0 x 0 2 y] 3314624803941106353}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 22 => 23.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 22 => 23.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 22 => 23.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 22 => 23.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 22 => 23.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[23, 23].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[23, 23].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[23, 23].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[23, 23].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[23, 23].
+[Clerk-PutAppend]                            Command(3314624803941106353) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Client(e4vYe-FMoz) issues a command(3702434866379497510): {0 3702434866379497510}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(24, {Get [0] 3702434866379497510}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 23 => 24.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 23 => 24.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 23 => 24.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 23 => 24.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 23 => 24.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[24, 24].
+[Server-Get]                                 Server(0): Reply from raft indicates SUCCESS for command(3702434866379497510).
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[24, 24].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[24, 24].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[24, 24].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[24, 24].
+=================i=1===============
+[Clerk-Get]                                  Command(3702434866379497510) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Command(3702434866379497510) call by client(e4vYe-FMoz) result: x 0 0 yx 0 1 yx 0 2 y 
+[Clerk-Get]                                  Client(e4vYe-FMoz) issues a command(954196665855550311): {0 954196665855550311}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(25, {Get [0] 954196665855550311}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 24 => 25.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 24 => 25.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 24 => 25.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 24 => 25.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 24 => 25.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[25, 25].
+[Server-Get]                                 Server(0): Reply from raft indicates SUCCESS for command(954196665855550311).
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[25, 25].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[25, 25].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[25, 25].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[25, 25].
+=================i=1===============
+[Clerk-Get]                                  Command(954196665855550311) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Command(954196665855550311) call by client(e4vYe-FMoz) result: x 0 0 yx 0 1 yx 0 2 y 
+[Clerk-PutAppend]                            Client(e4vYe-FMoz) issues a command(3272268211515494796): {0 x 0 3 y Append 3272268211515494796}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(26, {Append [0 x 0 3 y] 3272268211515494796}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 25 => 26.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 25 => 26.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 25 => 26.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 25 => 26.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 25 => 26.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[26, 26].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[26, 26].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[26, 26].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[26, 26].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[26, 26].
+[Clerk-PutAppend]                            Command(3272268211515494796) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Client(e4vYe-FMoz) issues a command(1514376154801829700): {0 1514376154801829700}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(27, {Get [0] 1514376154801829700}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 26 => 27.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 26 => 27.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 26 => 27.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 26 => 27.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 26 => 27.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[27, 27].
+[Server-Get]                                 Server(0): Reply from raft indicates SUCCESS for command(1514376154801829700).
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[27, 27].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[27, 27].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[27, 27].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[27, 27].
+=================i=1===============
+[Clerk-Get]                                  Command(1514376154801829700) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Command(1514376154801829700) call by client(e4vYe-FMoz) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 y 
+[Clerk-PutAppend]                            Client(e4vYe-FMoz) issues a command(2518247031613848677): {0 x 0 4 y Append 2518247031613848677}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(28, {Append [0 x 0 4 y] 2518247031613848677}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 27 => 28.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 27 => 28.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 27 => 28.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 27 => 28.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 27 => 28.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[28, 28].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[28, 28].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[28, 28].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[28, 28].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[28, 28].
+[Clerk-PutAppend]                            Command(2518247031613848677) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Client(e4vYe-FMoz) issues a command(2947956053402648452): {0 2947956053402648452}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(29, {Get [0] 2947956053402648452}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 28 => 29.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 28 => 29.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 28 => 29.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 28 => 29.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 28 => 29.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[29, 29].
+[Server-Get]                                 Server(0): Reply from raft indicates SUCCESS for command(2947956053402648452).
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[29, 29].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[29, 29].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[29, 29].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[29, 29].
+=================i=1===============
+[Clerk-Get]                                  Command(2947956053402648452) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Command(2947956053402648452) call by client(e4vYe-FMoz) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-PutAppend]                            Client(e4vYe-FMoz) issues a command(4534896978930839453): {0 x 0 5 y Append 4534896978930839453}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(30, {Append [0 x 0 5 y] 4534896978930839453}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 29 => 30.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 29 => 30.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 29 => 30.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 29 => 30.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 29 => 30.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[30, 30].
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[30, 30].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[30, 30].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[30, 30].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[30, 30].
+[Clerk-PutAppend]                            Command(4534896978930839453) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Client(e4vYe-FMoz) issues a command(2301164774334811296): {0 2301164774334811296}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(31, {Get [0] 2301164774334811296}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 30 => 31.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 30 => 31.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 30 => 31.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 30 => 31.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 30 => 31.
+[#2B Make]                                   Server(Leader, 0, 2) applied logs[31, 31].
+[Server-Get]                                 Server(0): Reply from raft indicates SUCCESS for command(2301164774334811296).
+[#2B Make]                                   Server(Follower, 2, 2) applied logs[31, 31].
+[#2B Make]                                   Server(Follower, 4, 2) applied logs[31, 31].
+[#2B Make]                                   Server(Follower, 3, 2) applied logs[31, 31].
+[#2B Make]                                   Server(Follower, 1, 2) applied logs[31, 31].
+=================i=1===============
+[Clerk-Get]                                  Command(2301164774334811296) call by client(e4vYe-FMoz) replys success from Server(0).
+[Clerk-Get]                                  Command(2301164774334811296) call by client(e4vYe-FMoz) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y 
+[Clerk-Get]                                  Client(e4vYe-FMoz) issues a command(3197953656450269522): {0 3197953656450269522}.
+[#2B Start]                                  Server(Leader, 0, 2) appends log(32, {Get [0] 3197953656450269522}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(4, 2) advances from 31 => 32.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(2, 2) advances from 31 => 32.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(1, 2) advances from 31 => 32.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 0, 2)'s matchIndex for Server(3, 2) advances from 31 => 32.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Make]                                       Have Server(Leader, 0, 2) exit now...
+[Make]                                       Server(Follower, 1, 2) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 1, 2) exit now...
+[Make]                                       Server(Follower, 2, 2) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 2, 2) exit now...
+[Make]                                       Server(Follower, 3, 2) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 3, 2) exit now...
+[Make]                                       Server(Follower, 4, 2) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 4, 2) exit now...
+[Clerk-Get]                                  Reply of command(3197953656450269522): {0 3197953656450269522} timeouts by Server(0).
+[Clerk-Get]                                  Client(e4vYe-FMoz) sends a command(3197953656450269522): {0 3197953656450269522} by redirecting  to Server(1).
+[Server-Get]                                  Server(0) wait raft timeout for command(3197953656450269522)!
+[Make]                                       Raft node 0 created server(Follower, 0, 0).
+[Make]                                       Raft node 1 created server(Follower, 1, 0).
+[Make]                                       Raft node 2 created server(Follower, 2, 0).
+[Make]                                       Raft node 3 created server(Follower, 3, 0).
+[Make]                                       Raft node 4 created server(Follower, 4, 0).
+[Make]                                       Server(Follower, 1, 2) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 1, 2) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 1, 3) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 2) will update its states by RequestVote RPC from server(1, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 2) will update its states by RequestVote RPC from server(1, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 3) updates its states by RequestVote RPC from server(1, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 3) updates its states by RequestVote RPC from server(1, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 3) is asked to vote from server(1, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 3) is asked to vote from server(1, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 2) will update its states by RequestVote RPC from server(1, 3).
+[Leader Election-sendRequestVote]            Server(Candidate, 1, 3) receives vote from server(3, 3), current votes is 2.
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 3) updates its states by RequestVote RPC from server(1, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 3) is asked to vote from server(1, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 2) will update its states by RequestVote RPC from server(1, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 3) updates its states by RequestVote RPC from server(1, 3).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 3) is asked to vote from server(1, 3).
+[Leader Election-sendRequestVote]            Server(Candidate, 1, 3) receives vote from server(4, 3), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 1, 3) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 1, 3) begins reinitialize nextIndex and matchIndex.
+[Clerk-Get]                                  Reply of command(3197953656450269522): {0 3197953656450269522} timeouts by Server(1).
+[Clerk-Get]                                  Client(e4vYe-FMoz) sends a command(3197953656450269522): {0 3197953656450269522} by redirecting  to Server(2).
+[Server-Get]                                 Client choose Server(2), wrong!
+[Clerk-Get]                                  Server(2) reply error for command(3197953656450269522): Request host is not the leader.
+[Clerk-Get]                                  Client(e4vYe-FMoz) sends a command(3197953656450269522): {0 3197953656450269522} by redirecting  to Server(3).
+[Server-Get]                                 Client choose Server(3), wrong!
+[Clerk-Get]                                  Server(3) reply error for command(3197953656450269522): Request host is not the leader.
+[Clerk-Get]                                  Client(e4vYe-FMoz) sends a command(3197953656450269522): {0 3197953656450269522} by redirecting  to Server(4).
+[#2B Start]                                  Server(Leader, 1, 3) appends log(33, {Get [0] 3197953656450269522}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 32 => 33.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 32 => 33.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 32 => 33.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 32 => 33.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 0 => 33.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[1, 33].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(3197953656450269522).
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[1, 33].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[1, 33].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[1, 33].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[1, 33].
+=================i=5===============
+[Clerk-Get]                                  Command(3197953656450269522) call by client(e4vYe-FMoz) replys success from Server(4).
+[Clerk-Get]                                  Command(3197953656450269522) call by client(e4vYe-FMoz) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y 
+[Clerk-Get]                                  Client(EVuxF2qbDD) issues a command(1682188443026328739): {0 1682188443026328739}.
+[Server-Get]                                 Client choose Server(0), wrong!
+[Clerk-Get]                                  Server(2) reply error for command(1682188443026328739): Request host is not the leader.
+[Clerk-Get]                                  Client(EVuxF2qbDD) sends a command(1682188443026328739): {0 1682188443026328739} by redirecting  to Server(3).
+[Server-Get]                                 Client choose Server(2), wrong!
+[Clerk-Get]                                  Server(3) reply error for command(1682188443026328739): Request host is not the leader.
+[Clerk-Get]                                  Client(EVuxF2qbDD) sends a command(1682188443026328739): {0 1682188443026328739} by redirecting  to Server(4).
+[Server-Get]                                 Client choose Server(4), wrong!
+[Clerk-Get]                                  Server(4) reply error for command(1682188443026328739): Request host is not the leader.
+[Clerk-Get]                                  Client(EVuxF2qbDD) sends a command(1682188443026328739): {0 1682188443026328739} by redirecting  to Server(0).
+[#2B Start]                                  Server(Leader, 1, 3) appends log(34, {Get [0] 1682188443026328739}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 33 => 34.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 33 => 34.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 33 => 34.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 33 => 34.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 33 => 34.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[34, 34].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(1682188443026328739).
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[34, 34].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[34, 34].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[34, 34].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[34, 34].
+=================i=4===============
+[Clerk-Get]                                  Command(1682188443026328739) call by client(EVuxF2qbDD) replys success from Server(0).
+[Clerk-Get]                                  Command(1682188443026328739) call by client(EVuxF2qbDD) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 yx 0 5 y 
+[Clerk-MakeClerk]                            Client(rEZuoUSKri) create...
+[Clerk-PutAppend]                            Client(rEZuoUSKri) issues a command(4325233007993018930): {0  Put 4325233007993018930}.
+[Server-Get]                                 Client choose Server(3), wrong!
+[Clerk-PutAppend]                            Server(0) reply error for command(4325233007993018930): Request host is not the leader.
+[Clerk-Get]                                  Client(rEZuoUSKri) sends a command(4325233007993018930): {0  Put 4325233007993018930} by redirecting  to Server(1).
+[Server-Get]                                 Client choose Server(2), wrong!
+[Clerk-PutAppend]                            Server(1) reply error for command(4325233007993018930): Request host is not the leader.
+[Clerk-Get]                                  Client(rEZuoUSKri) sends a command(4325233007993018930): {0  Put 4325233007993018930} by redirecting  to Server(2).
+[Server-Get]                                 Client choose Server(4), wrong!
+[Clerk-PutAppend]                            Server(2) reply error for command(4325233007993018930): Request host is not the leader.
+[Clerk-Get]                                  Client(rEZuoUSKri) sends a command(4325233007993018930): {0  Put 4325233007993018930} by redirecting  to Server(3).
+[#2B Start]                                  Server(Leader, 1, 3) appends log(35, {Put [0 ] 4325233007993018930}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 34 => 35.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 34 => 35.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 34 => 35.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 34 => 35.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 34 => 35.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[35, 35].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[35, 35].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[35, 35].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[35, 35].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[35, 35].
+[Clerk-PutAppend]                            Command(4325233007993018930) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-PutAppend]                            Client(rEZuoUSKri) issues a command(583164983537752063): {0 x 0 0 y Append 583164983537752063}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(36, {Append [0 x 0 0 y] 583164983537752063}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 35 => 36.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 35 => 36.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 35 => 36.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 35 => 36.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 35 => 36.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[36, 36].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[36, 36].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[36, 36].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[36, 36].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[36, 36].
+[Clerk-PutAppend]                            Command(583164983537752063) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-PutAppend]                            Client(rEZuoUSKri) issues a command(1961288713896047394): {0 x 0 1 y Append 1961288713896047394}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(37, {Append [0 x 0 1 y] 1961288713896047394}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 36 => 37.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 36 => 37.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 36 => 37.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 36 => 37.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 36 => 37.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[37, 37].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[37, 37].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[37, 37].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[37, 37].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[37, 37].
+[Clerk-PutAppend]                            Command(1961288713896047394) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Client(rEZuoUSKri) issues a command(2325419873427975709): {0 2325419873427975709}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(38, {Get [0] 2325419873427975709}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 37 => 38.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 37 => 38.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 37 => 38.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 37 => 38.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 37 => 38.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[38, 38].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(2325419873427975709).
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[38, 38].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[38, 38].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[38, 38].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[38, 38].
+=================i=1===============
+[Clerk-Get]                                  Command(2325419873427975709) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Command(2325419873427975709) call by client(rEZuoUSKri) result: x 0 0 yx 0 1 y 
+[Clerk-Get]                                  Client(rEZuoUSKri) issues a command(4214515483959755044): {0 4214515483959755044}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(39, {Get [0] 4214515483959755044}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 38 => 39.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 38 => 39.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 38 => 39.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 38 => 39.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 38 => 39.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[39, 39].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(4214515483959755044).
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[39, 39].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[39, 39].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[39, 39].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[39, 39].
+=================i=1===============
+[Clerk-Get]                                  Command(4214515483959755044) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Command(4214515483959755044) call by client(rEZuoUSKri) result: x 0 0 yx 0 1 y 
+[Clerk-PutAppend]                            Client(rEZuoUSKri) issues a command(3764226993986364200): {0 x 0 2 y Append 3764226993986364200}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(40, {Append [0 x 0 2 y] 3764226993986364200}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 39 => 40.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 39 => 40.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 39 => 40.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 39 => 40.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 39 => 40.
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[40, 40].
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[40, 40].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[40, 40].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[40, 40].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[40, 40].
+[Clerk-PutAppend]                            Command(3764226993986364200) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Client(rEZuoUSKri) issues a command(4336788391833450529): {0 4336788391833450529}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(41, {Get [0] 4336788391833450529}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 40 => 41.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 40 => 41.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 40 => 41.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 40 => 41.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 40 => 41.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[41, 41].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(4336788391833450529).
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[41, 41].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[41, 41].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[41, 41].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[41, 41].
+=================i=1===============
+[Clerk-Get]                                  Command(4336788391833450529) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Command(4336788391833450529) call by client(rEZuoUSKri) result: x 0 0 yx 0 1 yx 0 2 y 
+[Clerk-Get]                                  Client(rEZuoUSKri) issues a command(1270327800590655321): {0 1270327800590655321}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(42, {Get [0] 1270327800590655321}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 41 => 42.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 41 => 42.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 41 => 42.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 41 => 42.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 41 => 42.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[42, 42].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(1270327800590655321).
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[42, 42].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[42, 42].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[42, 42].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[42, 42].
+=================i=1===============
+[Clerk-Get]                                  Command(1270327800590655321) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Command(1270327800590655321) call by client(rEZuoUSKri) result: x 0 0 yx 0 1 yx 0 2 y 
+[Clerk-PutAppend]                            Client(rEZuoUSKri) issues a command(1683129615262283952): {0 x 0 3 y Append 1683129615262283952}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(43, {Append [0 x 0 3 y] 1683129615262283952}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 42 => 43.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 42 => 43.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 42 => 43.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 42 => 43.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 42 => 43.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[43, 43].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[43, 43].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[43, 43].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[43, 43].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[43, 43].
+[Clerk-PutAppend]                            Command(1683129615262283952) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Client(rEZuoUSKri) issues a command(1197038939532469302): {0 1197038939532469302}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(44, {Get [0] 1197038939532469302}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 43 => 44.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 43 => 44.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 43 => 44.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 43 => 44.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 43 => 44.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[44, 44].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(1197038939532469302).
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[44, 44].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[44, 44].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[44, 44].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[44, 44].
+=================i=1===============
+[Clerk-Get]                                  Command(1197038939532469302) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Command(1197038939532469302) call by client(rEZuoUSKri) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 y 
+[Clerk-Get]                                  Client(rEZuoUSKri) issues a command(3053537173148149204): {0 3053537173148149204}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(45, {Get [0] 3053537173148149204}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 44 => 45.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 44 => 45.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 44 => 45.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 44 => 45.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 44 => 45.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[45, 45].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(3053537173148149204).
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[45, 45].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[45, 45].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[45, 45].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[45, 45].
+=================i=1===============
+[Clerk-Get]                                  Command(3053537173148149204) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Command(3053537173148149204) call by client(rEZuoUSKri) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 y 
+[Clerk-Get]                                  Client(rEZuoUSKri) issues a command(4567872621910531042): {0 4567872621910531042}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(46, {Get [0] 4567872621910531042}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 45 => 46.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 45 => 46.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 45 => 46.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 45 => 46.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 45 => 46.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[46, 46].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(4567872621910531042).
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[46, 46].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[46, 46].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[46, 46].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[46, 46].
+=================i=1===============
+[Clerk-Get]                                  Command(4567872621910531042) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Command(4567872621910531042) call by client(rEZuoUSKri) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 y 
+[Clerk-PutAppend]                            Client(rEZuoUSKri) issues a command(2540456571082966307): {0 x 0 4 y Append 2540456571082966307}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(47, {Append [0 x 0 4 y] 2540456571082966307}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 46 => 47.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 46 => 47.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 46 => 47.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 46 => 47.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 46 => 47.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[47, 47].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[47, 47].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[47, 47].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[47, 47].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[47, 47].
+[Clerk-PutAppend]                            Command(2540456571082966307) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Client(rEZuoUSKri) issues a command(1227845527200845092): {0 1227845527200845092}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(48, {Get [0] 1227845527200845092}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 47 => 48.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 47 => 48.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 47 => 48.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 47 => 48.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 47 => 48.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[48, 48].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(1227845527200845092).
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[48, 48].
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[48, 48].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[48, 48].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[48, 48].
+=================i=1===============
+[Clerk-Get]                                  Command(1227845527200845092) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Command(1227845527200845092) call by client(rEZuoUSKri) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-Get]                                  Client(rEZuoUSKri) issues a command(2657343989534533386): {0 2657343989534533386}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(49, {Get [0] 2657343989534533386}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 48 => 49.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 48 => 49.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 48 => 49.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 48 => 49.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 48 => 49.
+[#2B Make]                                   Server(Leader, 1, 3) applied logs[49, 49].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(2657343989534533386).
+[#2B Make]                                   Server(Follower, 3, 3) applied logs[49, 49].
+[#2B Make]                                   Server(Follower, 2, 3) applied logs[49, 49].
+[#2B Make]                                   Server(Follower, 0, 3) applied logs[49, 49].
+[#2B Make]                                   Server(Follower, 4, 3) applied logs[49, 49].
+=================i=1===============
+[Clerk-Get]                                  Command(2657343989534533386) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Command(2657343989534533386) call by client(rEZuoUSKri) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-Get]                                  Client(rEZuoUSKri) issues a command(92864759900047119): {0 92864759900047119}.
+[#2B Start]                                  Server(Leader, 1, 3) appends log(50, {Get [0] 92864759900047119}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(0, 3) advances from 49 => 50.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(2, 3) advances from 49 => 50.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(4, 3) advances from 49 => 50.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 3)'s matchIndex for Server(3, 3) advances from 49 => 50.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Make]                                       Have Server(Leader, 1, 3) exit now...
+[Make]                                       Server(Follower, 3, 3) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 3, 3) exit now...
+[Make]                                       Server(Follower, 4, 3) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 4, 3) exit now...
+[Make]                                       Server(Follower, 2, 3) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 2, 3) exit now...
+[Make]                                       Server(Follower, 0, 3) waits timeout, converts to Candidate.
+[Make]                                       Have Server(Candidate, 0, 3) exit now...
+[Clerk-Get]                                  Reply of command(92864759900047119): {0 92864759900047119} timeouts by Server(3).
+[Clerk-Get]                                  Client(rEZuoUSKri) sends a command(92864759900047119): {0 92864759900047119} by redirecting  to Server(4).
+[Server-Get]                                  Server(1) wait raft timeout for command(92864759900047119)!
+[Make]                                       Raft node 0 created server(Follower, 0, 0).
+[Make]                                       Raft node 1 created server(Follower, 1, 0).
+[Make]                                       Raft node 2 created server(Follower, 2, 0).
+[Make]                                       Raft node 3 created server(Follower, 3, 0).
+[Make]                                       Raft node 4 created server(Follower, 4, 0).
+[Make]                                       Server(Follower, 1, 3) waits timeout, converts to Candidate.
+[Make]                                       Server(Candidate, 1, 3) restarts a new election.
+[Leader Election-broadcastRequestVote]       Server(Candidate, 1, 4) begins broadcast RequestVote RPCs to all peers.
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 3) will update its states by RequestVote RPC from server(1, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 3) will update its states by RequestVote RPC from server(1, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 4) updates its states by RequestVote RPC from server(1, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 4) updates its states by RequestVote RPC from server(1, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 3) will update its states by RequestVote RPC from server(1, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 4, 4) is asked to vote from server(1, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 2, 4) is asked to vote from server(1, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 4) updates its states by RequestVote RPC from server(1, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 0, 4) is asked to vote from server(1, 4).
+[Leader Election-sendRequestVote]            Server(Candidate, 1, 4) receives vote from server(4, 4), current votes is 2.
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 3) will update its states by RequestVote RPC from server(1, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 4) updates its states by RequestVote RPC from server(1, 4).
+[Leader Election-RequestVoteHandler]         Server(Follower, 3, 4) is asked to vote from server(1, 4).
+[Leader Election-sendRequestVote]            Server(Candidate, 1, 4) receives vote from server(2, 4), current votes is 3.
+[Leader Election-sendRequestVote]            Server(Follower, 1, 4) steps forward to the leader successfully!
+[Make]                                       Server(Leader, 1, 4) begins reinitialize nextIndex and matchIndex.
+[Clerk-Get]                                  Reply of command(92864759900047119): {0 92864759900047119} timeouts by Server(4).
+[Clerk-Get]                                  Client(rEZuoUSKri) sends a command(92864759900047119): {0 92864759900047119} by redirecting  to Server(0).
+[Server-Get]                                 Client choose Server(3), wrong!
+[Clerk-Get]                                  Server(0) reply error for command(92864759900047119): Request host is not the leader.
+[Clerk-Get]                                  Client(rEZuoUSKri) sends a command(92864759900047119): {0 92864759900047119} by redirecting  to Server(1).
+[Server-Get]                                 Client choose Server(2), wrong!
+[Clerk-Get]                                  Server(1) reply error for command(92864759900047119): Request host is not the leader.
+[Clerk-Get]                                  Client(rEZuoUSKri) sends a command(92864759900047119): {0 92864759900047119} by redirecting  to Server(2).
+[Server-Get]                                 Client choose Server(4), wrong!
+[Clerk-Get]                                  Server(2) reply error for command(92864759900047119): Request host is not the leader.
+[Clerk-Get]                                  Client(rEZuoUSKri) sends a command(92864759900047119): {0 92864759900047119} by redirecting  to Server(3).
+[#2B Start]                                  Server(Leader, 1, 4) appends log(51, {Get [0] 92864759900047119}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 4)'s matchIndex for Server(0, 4) advances from 50 => 51.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 4)'s matchIndex for Server(4, 4) advances from 50 => 51.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 4)'s matchIndex for Server(3, 4) advances from 50 => 51.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 4)'s matchIndex for Server(2, 4) advances from 50 => 51.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 0 => 51.
+[#2B Make]                                   Server(Leader, 1, 4) applied logs[1, 51].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(92864759900047119).
+[#2B Make]                                   Server(Follower, 3, 4) applied logs[1, 51].
+[#2B Make]                                   Server(Follower, 4, 4) applied logs[1, 51].
+[#2B Make]                                   Server(Follower, 0, 4) applied logs[1, 51].
+[#2B Make]                                   Server(Follower, 2, 4) applied logs[1, 51].
+=================i=6===============
+[Clerk-Get]                                  Command(92864759900047119) call by client(rEZuoUSKri) replys success from Server(3).
+[Clerk-Get]                                  Command(92864759900047119) call by client(rEZuoUSKri) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+[Clerk-Get]                                  Client(EVuxF2qbDD) issues a command(1067711171716872681): {0 1067711171716872681}.
+[#2B Start]                                  Server(Leader, 1, 4) appends log(52, {Get [0] 1067711171716872681}).
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 4)'s matchIndex for Server(2, 4) advances from 51 => 52.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 4)'s matchIndex for Server(3, 4) advances from 51 => 52.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 4)'s matchIndex for Server(0, 4) advances from 51 => 52.
+[#2B Append Entries-sendAppendEntries]       Server(Leader, 1, 4)'s matchIndex for Server(4, 4) advances from 51 => 52.
+[#2B Append Entries-broadcastAppendEntries]  CommitIndex advances from 51 => 52.
+[#2B Make]                                   Server(Leader, 1, 4) applied logs[52, 52].
+[Server-Get]                                 Server(1): Reply from raft indicates SUCCESS for command(1067711171716872681).
+[#2B Make]                                   Server(Follower, 4, 4) applied logs[52, 52].
+[#2B Make]                                   Server(Follower, 0, 4) applied logs[52, 52].
+[#2B Make]                                   Server(Follower, 2, 4) applied logs[52, 52].
+[#2B Make]                                   Server(Follower, 3, 4) applied logs[52, 52].
+=================i=1===============
+[Clerk-Get]                                  Command(1067711171716872681) call by client(EVuxF2qbDD) replys success from Server(0).
+[Clerk-Get]                                  Command(1067711171716872681) call by client(EVuxF2qbDD) result: x 0 0 yx 0 1 yx 0 2 yx 0 3 yx 0 4 y 
+  ... Passed --  22.9  5   824   50
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+[Kill]                                       Clear all channels.
+PASS
+ok  	kvraft	22.917s
